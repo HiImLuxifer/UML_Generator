@@ -1,0 +1,14 @@
+@startuml
+title Component Diagram - System Architecture
+
+component "recommendationservice"
+component "currencyservice"
+component "productcatalogservice"
+component "frontend"
+
+' Service dependencies
+"recommendationservice" --> "productcatalogservice"
+"frontend" --> "recommendationservice"
+"frontend" --> "productcatalogservice"
+
+@enduml

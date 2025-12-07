@@ -1,0 +1,16 @@
+C:\Users\Matteo\Desktop\TESI GRA\UML\src\main\java\com\uml\generator\analyzer\TraceAggregator.java
+C:\Users\Matteo\Desktop\TESI GRA\UML\src\main\java\com\uml\generator\cli\CommandLineInterface.java
+C:\Users\Matteo\Desktop\TESI GRA\UML\src\main\java\com\uml\generator\generator\ComponentDiagramGenerator.java
+C:\Users\Matteo\Desktop\TESI GRA\UML\src\main\java\com\uml\generator\generator\DeploymentDiagramGenerator.java
+C:\Users\Matteo\Desktop\TESI GRA\UML\src\main\java\com\uml\generator\generator\DiagramGenerator.java
+C:\Users\Matteo\Desktop\TESI GRA\UML\src\main\java\com\uml\generator\generator\SequenceDiagramGenerator.java
+C:\Users\Matteo\Desktop\TESI GRA\UML\src\main\java\com\uml\generator\input\JaegerApiClient.java
+C:\Users\Matteo\Desktop\TESI GRA\UML\src\main\java\com\uml\generator\input\JsonFileReader.java
+C:\Users\Matteo\Desktop\TESI GRA\UML\src\main\java\com\uml\generator\input\TraceReader.java
+C:\Users\Matteo\Desktop\TESI GRA\UML\src\main\java\com\uml\generator\JaegerUmlGenerator.java
+C:\Users\Matteo\Desktop\TESI GRA\UML\src\main\java\com\uml\generator\model\Process.java
+C:\Users\Matteo\Desktop\TESI GRA\UML\src\main\java\com\uml\generator\model\Reference.java
+C:\Users\Matteo\Desktop\TESI GRA\UML\src\main\java\com\uml\generator\model\Span.java
+C:\Users\Matteo\Desktop\TESI GRA\UML\src\main\java\com\uml\generator\model\Trace.java
+C:\Users\Matteo\Desktop\TESI GRA\UML\src\main\java\com\uml\generator\renderer\PlantUmlRenderer.java
+C:\Users\Matteo\Desktop\TESI GRA\UML\src\main\java\com\uml\generator\util\NameUtils.java

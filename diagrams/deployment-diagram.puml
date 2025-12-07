@@ -1,0 +1,22 @@
+@startuml
+title Deployment Diagram - Infrastructure
+
+node "Node-538" {
+  artifact "recommendationservice"
+}
+
+node "Node-8353" {
+  artifact "productcatalogservice"
+  artifact "frontend"
+}
+
+node "currencyservice-6d559b9456-xmf5z" {
+  artifact "currencyservice"
+}
+
+' Service dependencies
+"recommendationservice" --> "productcatalogservice"
+"frontend" --> "recommendationservice"
+"frontend" --> "productcatalogservice"
+
+@enduml

@@ -1,0 +1,104 @@
+{
+  "data": [
+    {
+      "traceID": "abc123def456",
+      "spans": [
+        {
+          "traceID": "abc123def456",
+          "spanID": "span1",
+          "operationName": "HTTP GET /api/products",
+          "references": [],
+          "startTime": 1701000000000000,
+          "duration": 250000,
+          "tags": [
+            {"key": "http.method", "value": "GET"},
+            {"key": "http.url", "value": "/api/products"},
+            {"key": "span.kind", "value": "server"}
+          ],
+          "logs": [],
+          "processID": "p1"
+        },
+        {
+          "traceID": "abc123def456",
+          "spanID": "span2",
+          "operationName": "get_products",
+          "references": [
+            {"refType": "CHILD_OF", "traceID": "abc123def456", "spanID": "span1"}
+          ],
+          "startTime": 1701000010000000,
+          "duration": 200000,
+          "tags": [
+            {"key": "db.type", "value": "sql"},
+            {"key": "span.kind", "value": "client"}
+          ],
+          "logs": [],
+          "processID": "p2"
+        },
+        {
+          "traceID": "abc123def456",
+          "spanID": "span3",
+          "operationName": "SELECT * FROM products",
+          "references": [
+            {"refType": "CHILD_OF", "traceID": "abc123def456", "spanID": "span2"}
+          ],
+          "startTime": 1701000020000000,
+          "duration": 180000,
+          "tags": [
+            {"key": "db.statement", "value": "SELECT * FROM products"},
+            {"key": "span.kind", "value": "server"}
+          ],
+          "logs": [],
+          "processID": "p3"
+        },
+        {
+          "traceID": "abc123def456",
+          "spanID": "span4",
+          "operationName": "enrich_product_data",
+          "references": [
+            {"refType": "CHILD_OF", "traceID": "abc123def456", "spanID": "span1"}
+          ],
+          "startTime": 1701000220000000,
+          "duration": 150000,
+          "tags": [
+            {"key": "span.kind", "value": "internal"}
+          ],
+          "logs": [],
+          "processID": "p4"
+        }
+      ],
+      "processes": {
+        "p1": {
+          "serviceName": "frontend",
+          "tags": {
+            "hostname": "frontend-pod-1",
+            "namespace": "production",
+            "pod.name": "frontend-pod-1"
+          }
+        },
+        "p2": {
+          "serviceName": "product-service",
+          "tags": {
+            "hostname": "product-pod-1",
+            "namespace": "production",
+            "pod.name": "product-pod-1"
+          }
+        },
+        "p3": {
+          "serviceName": "database",
+          "tags": {
+            "hostname": "db-server-1",
+            "namespace": "production"
+          }
+        },
+        "p4": {
+          "serviceName": "cache-service",
+          "tags": {
+            "hostname": "cache-pod-1",
+            "namespace": "production",
+            "pod.name": "cache-pod-1"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+@startuml
+title Sequence Diagram - Trace 1
+autonumber
+
+participant "currencyservice" as currencyservice
+participant "frontend" as frontend
+participant "productcatalogservice" as productcatalogservice
+participant "recommendationservice" as recommendationservice
+
+[-> frontend: frontend
+frontend -> productcatalogservice: ProductCatalogService/GetProduct
+productcatalogservice --> frontend
+[-> currencyservice: CurrencyService/GetSupportedCurrencies
+[-> currencyservice: CurrencyService/Convert
+frontend -> recommendationservice: RecommendationService/ListRecommendations
+recommendationservice --> frontend
+recommendationservice -> productcatalogservice: ProductCatalogService/ListProducts
+productcatalogservice --> recommendationservice
+frontend -> productcatalogservice: ProductCatalogService/GetProduct [x5]
+productcatalogservice --> frontend
+
+@enduml
