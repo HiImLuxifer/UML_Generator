@@ -25,6 +25,9 @@ public class Trace {
     @JsonProperty("warnings")
     private List<String> warnings;
 
+    // Non-JSON field: tracks the source filename for this trace
+    private String sourceName;
+
     public Trace() {
         this.spans = new ArrayList<>();
         this.processes = new HashMap<>();
@@ -60,6 +63,14 @@ public class Trace {
 
     public void setWarnings(List<String> warnings) {
         this.warnings = warnings;
+    }
+
+    public String getSourceName() {
+        return sourceName;
+    }
+
+    public void setSourceName(String sourceName) {
+        this.sourceName = sourceName;
     }
 
     /**

@@ -108,49 +108,109 @@ public class JaegerUmlGenerator {
      */
     private void generateDiagrams(CommandLineInterface cli, List<Trace> traces) throws Exception {
         String diagramType = cli.getDiagramType().toLowerCase();
-
-        List<DiagramGenerator> generators = new ArrayList<>();
-
-        // Determine which generators to use
-        if (diagramType.equals("all") || diagramType.equals("sequence")) {
-            generators.add(new SequenceDiagramGenerator());
-        }
-
-        if (diagramType.equals("all") || diagramType.equals("component")) {
-            generators.add(new ComponentDiagramGenerator());
-        }
-
-        if (diagramType.equals("all") || diagramType.equals("deployment")) {
-            generators.add(new DeploymentDiagramGenerator());
-        }
-
-        if (generators.isEmpty()) {
-            throw new Exception("Invalid diagram type: " + cli.getDiagramType());
-        }
-
-        // Generate and render each diagram type
         PlantUmlRenderer renderer = new PlantUmlRenderer();
 
-        for (DiagramGenerator generator : generators) {
-            logger.info("Generating {} diagram", generator.getDiagramType());
+        // Generate all requested diagram types for each trace individually
+        for (int i = 0; i < traces.size(); i++) {
+            Trace trace = traces.get(i);
 
-            String plantUmlSource = generator.generatePlantUML(traces);
+            // Use sourceName if available, otherwise fall back to index
+            String traceName = trace.getSourceName() != null && !trace.getSourceName().isEmpty()
+                    ? trace.getSourceName()
+                    : "trace-" + (i + 1);
 
-            if (plantUmlSource == null || plantUmlSource.trim().isEmpty()) {
-                logger.warn("No PlantUML source generated for {} diagram", generator.getDiagramType());
-                continue;
+            // Clean trace name by removing common prefixes
+            traceName = cleanTraceName(traceName);
+
+            // Create a list with single trace for individual diagram generation
+            List<Trace> singleTraceList = new ArrayList<>();
+            singleTraceList.add(trace);
+
+            // Generate sequence diagram for this trace
+            if (diagramType.equals("all") || diagramType.equals("sequence")) {
+                logger.info("Generating sequence diagram for {}", traceName);
+                SequenceDiagramGenerator sequenceGenerator = new SequenceDiagramGenerator();
+                String plantUmlSource = sequenceGenerator.generatePlantUMLForTrace(trace, i);
+
+                if (plantUmlSource != null && !plantUmlSource.trim().isEmpty()) {
+                    String filename = "sequence-" + traceName;
+                    File pumlFile = new File(cli.getOutputDir(), filename + ".puml");
+                    savePlantUmlSource(plantUmlSource, pumlFile);
+
+                    File pngFile = new File(cli.getOutputDir(), filename + ".png");
+                    renderer.renderToPng(plantUmlSource, pngFile);
+                    System.out.println("  Generated: " + pngFile.getName());
+                } else {
+                    logger.warn("No PlantUML source generated for sequence diagram: {}", traceName);
+                }
             }
 
-            // Save PlantUML source
-            File pumlFile = new File(cli.getOutputDir(), generator.getDiagramType() + "-diagram.puml");
-            savePlantUmlSource(plantUmlSource, pumlFile);
+            // Generate component diagram for this trace
+            if (diagramType.equals("all") || diagramType.equals("component")) {
+                logger.info("Generating component diagram for {}", traceName);
+                ComponentDiagramGenerator componentGenerator = new ComponentDiagramGenerator();
+                String plantUmlSource = componentGenerator.generatePlantUML(singleTraceList);
 
-            // Render to PNG
-            File pngFile = new File(cli.getOutputDir(), generator.getDiagramType() + "-diagram.png");
-            renderer.renderToPng(plantUmlSource, pngFile);
+                if (plantUmlSource != null && !plantUmlSource.trim().isEmpty()) {
+                    String filename = "component-" + traceName;
+                    File pumlFile = new File(cli.getOutputDir(), filename + ".puml");
+                    savePlantUmlSource(plantUmlSource, pumlFile);
 
-            System.out.println("  Generated: " + pngFile.getName());
+                    File pngFile = new File(cli.getOutputDir(), filename + ".png");
+                    renderer.renderToPng(plantUmlSource, pngFile);
+                    System.out.println("  Generated: " + pngFile.getName());
+                } else {
+                    logger.warn("No PlantUML source generated for component diagram: {}", traceName);
+                }
+            }
+
+            // Generate deployment diagram for this trace
+            if (diagramType.equals("all") || diagramType.equals("deployment")) {
+                logger.info("Generating deployment diagram for {}", traceName);
+                DeploymentDiagramGenerator deploymentGenerator = new DeploymentDiagramGenerator();
+                String plantUmlSource = deploymentGenerator.generatePlantUML(singleTraceList);
+
+                if (plantUmlSource != null && !plantUmlSource.trim().isEmpty()) {
+                    String filename = "deployment-" + traceName;
+                    File pumlFile = new File(cli.getOutputDir(), filename + ".puml");
+                    savePlantUmlSource(plantUmlSource, pumlFile);
+
+                    File pngFile = new File(cli.getOutputDir(), filename + ".png");
+                    renderer.renderToPng(plantUmlSource, pngFile);
+                    System.out.println("  Generated: " + pngFile.getName());
+                } else {
+                    logger.warn("No PlantUML source generated for deployment diagram: {}", traceName);
+                }
+            }
         }
+    }
+
+    /**
+     * Cleans trace name by removing common prefixes like "traccia_", "taccia_",
+     * "trace_".
+     * 
+     * @param name the original trace name
+     * @return cleaned trace name
+     */
+    private String cleanTraceName(String name) {
+        if (name == null || name.isEmpty()) {
+            return name;
+        }
+
+        // Remove common prefixes (case insensitive, with underscore or hyphen)
+        String cleaned = name;
+
+        // Try to match patterns like "traccia_xxx", "taccia_xxx", "trace_xxx"
+        if (cleaned.toLowerCase().startsWith("traccia_") || cleaned.toLowerCase().startsWith("traccia-")) {
+            cleaned = cleaned.substring(8); // Remove "traccia_" or "traccia-"
+        } else if (cleaned.toLowerCase().startsWith("taccia_") || cleaned.toLowerCase().startsWith("taccia-")) {
+            cleaned = cleaned.substring(7); // Remove "taccia_" or "taccia-"
+        } else if (cleaned.toLowerCase().startsWith("trace_") || cleaned.toLowerCase().startsWith("trace-")) {
+            cleaned = cleaned.substring(6); // Remove "trace_" or "trace-"
+        }
+
+        // If we removed everything, return original
+        return cleaned.isEmpty() ? name : cleaned;
     }
 
     /**

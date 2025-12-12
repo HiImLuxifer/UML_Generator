@@ -48,6 +48,22 @@ public class SequenceDiagramGenerator implements DiagramGenerator {
     }
 
     /**
+     * Generates a PlantUML sequence diagram for a single trace.
+     * This method is public to allow generating separate diagrams for each trace.
+     *
+     * @param trace The trace to generate diagram for
+     * @param index The index of the trace (used in diagram title)
+     * @return PlantUML source code for the sequence diagram
+     */
+    public String generatePlantUMLForTrace(Trace trace, int index) {
+        if (trace == null) {
+            logger.warn("Null trace provided for sequence diagram generation");
+            return "";
+        }
+        return generateSequenceDiagramForTrace(trace, index);
+    }
+
+    /**
      * Generates a sequence diagram for a single trace with deduplication.
      */
     private String generateSequenceDiagramForTrace(Trace trace, int index) {

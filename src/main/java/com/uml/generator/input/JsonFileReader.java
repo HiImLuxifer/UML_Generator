@@ -84,6 +84,12 @@ public class JsonFileReader implements TraceReader {
     private List<Trace> readTracesFromFile(File file) throws IOException {
         List<Trace> traces = new ArrayList<>();
 
+        // Extract filename without extension for source naming
+        String filename = file.getName();
+        String sourceName = filename.endsWith(".json")
+                ? filename.substring(0, filename.length() - 5)
+                : filename;
+
         JsonNode rootNode = objectMapper.readTree(file);
 
         // Check if the JSON is wrapped in a "data" field (Jaeger API format)
@@ -94,22 +100,26 @@ public class JsonFileReader implements TraceReader {
                 // Array of traces
                 for (JsonNode traceNode : dataNode) {
                     Trace trace = objectMapper.treeToValue(traceNode, Trace.class);
+                    trace.setSourceName(sourceName);
                     traces.add(trace);
                 }
             } else {
                 // Single trace
                 Trace trace = objectMapper.treeToValue(dataNode, Trace.class);
+                trace.setSourceName(sourceName);
                 traces.add(trace);
             }
         } else if (rootNode.isArray()) {
             // Direct array of traces
             for (JsonNode traceNode : rootNode) {
                 Trace trace = objectMapper.treeToValue(traceNode, Trace.class);
+                trace.setSourceName(sourceName);
                 traces.add(trace);
             }
         } else {
             // Single trace object
             Trace trace = objectMapper.treeToValue(rootNode, Trace.class);
+            trace.setSourceName(sourceName);
             traces.add(trace);
         }
 
