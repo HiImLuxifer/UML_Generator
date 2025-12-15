@@ -1,0 +1,29 @@
+@startuml
+title Sequence Diagram - Trace 2
+autonumber
+
+participant "checkoutservice" as checkoutservice
+participant "currencyservice" as currencyservice
+participant "emailservice" as emailservice
+participant "frontend" as frontend
+participant "paymentservice" as paymentservice
+participant "productcatalogservice" as productcatalogservice
+participant "recommendationservice" as recommendationservice
+
+[-> frontend: frontend
+frontend -> checkoutservice: CheckoutService/PlaceOrder
+checkoutservice --> frontend
+checkoutservice -> productcatalogservice: ProductCatalogService/GetProduct [x3]
+productcatalogservice --> checkoutservice
+[-> paymentservice: PaymentService/Charge
+checkoutservice -> emailservice: EmailService/SendOrderConfirmation
+emailservice --> checkoutservice
+frontend -> recommendationservice: RecommendationService/ListRecommendations
+recommendationservice --> frontend
+recommendationservice -> productcatalogservice: ProductCatalogService/ListProducts
+productcatalogservice --> recommendationservice
+frontend -> productcatalogservice: ProductCatalogService/GetProduct [x5]
+productcatalogservice --> frontend
+[-> currencyservice: CurrencyService/GetSupportedCurrencies
+
+@enduml

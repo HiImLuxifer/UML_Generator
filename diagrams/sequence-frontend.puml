@@ -1,0 +1,23 @@
+@startuml
+title Sequence Diagram - Trace 3
+autonumber
+
+participant "currencyservice" as currencyservice
+participant "frontend" as frontend
+participant "productcatalogservice" as productcatalogservice
+
+[-> frontend: frontend
+[-> currencyservice: CurrencyService/GetSupportedCurrencies
+frontend -> productcatalogservice: ProductCatalogService/ListProducts
+productcatalogservice --> frontend
+[-> currencyservice: CurrencyService/Convert
+[-> currencyservice: CurrencyService/Convert
+[-> currencyservice: CurrencyService/Convert
+[-> currencyservice: CurrencyService/Convert
+[-> currencyservice: CurrencyService/Convert
+[-> currencyservice: CurrencyService/Convert
+[-> currencyservice: CurrencyService/Convert
+[-> currencyservice: CurrencyService/Convert
+[-> currencyservice: CurrencyService/Convert
+
+@enduml

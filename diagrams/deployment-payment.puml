@@ -1,0 +1,31 @@
+@startuml
+title Deployment Diagram - Infrastructure
+
+node "paymentservice-6696fb8bf7-l5whb" {
+  artifact "paymentservice"
+}
+
+node "Node-538" {
+  artifact "recommendationservice"
+  artifact "emailservice"
+}
+
+node "Node-8353" {
+  artifact "checkoutservice"
+  artifact "productcatalogservice"
+  artifact "frontend"
+}
+
+node "currencyservice-6d559b9456-xmf5z" {
+  artifact "currencyservice"
+}
+
+' Service dependencies
+"recommendationservice" --> "productcatalogservice"
+"checkoutservice" --> "emailservice"
+"checkoutservice" --> "productcatalogservice"
+"frontend" --> "recommendationservice"
+"frontend" --> "checkoutservice"
+"frontend" --> "productcatalogservice"
+
+@enduml

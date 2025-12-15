@@ -1,0 +1,11 @@
+@startuml
+title Sequence Diagram - Trace 4
+autonumber
+
+participant "checkoutservice" as checkoutservice
+participant "currencyservice" as currencyservice
+
+[-> checkoutservice: CurrencyService/Convert
+[-> currencyservice: CurrencyService/Convert
+
+@enduml
