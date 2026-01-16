@@ -1,11 +1,42 @@
 @startuml
-title Sequence Diagram - Trace 1
-autonumber
+'https://plantuml.com/sequence-diagram
 
-participant "currencyservice" as currencyservice
-participant "frontend" as frontend
-participant "productcatalogservice" as productcatalogservice
-participant "recommendationservice" as recommendationservice
+skinparam sequenceArrowThickness 2
+skinparam roundcorner 10
+skinparam maxMessageSize 200
+skinparam sequenceParticipant underline
+
+skinparam sequence {
+  ArrowColor DeepSkyBlue
+  ActorBorderColor DeepSkyBlue
+  LifeLineBorderColor blue
+  LifeLineBackgroundColor #A9DCDF
+  ParticipantBorderColor DeepSkyBlue
+  ParticipantBackgroundColor DodgerBlue
+  ParticipantFontName Impact
+  ParticipantFontSize 17
+  ParticipantFontColor #A9DCDF
+  ActorBackgroundColor aqua
+  ActorFontColor DeepSkyBlue
+  ActorFontSize 17
+  ActorFontName Aapex
+  BoxBorderColor GreenYellow
+  BoxFontSize 12
+}
+
+title Sequence Diagram - Traccia frontend2
+
+header
+  <font color=red>UML Generator</font>
+  Jaeger Trace Analysis
+endheader
+
+autonumber "<b>[0]"
+
+participant "currencyservice" as currencyservice <<Backend>>
+participant "frontend" as frontend <<Frontend>>
+participant "productcatalogservice" as productcatalogservice <<Backend>>
+participant "recommendationservice" as recommendationservice <<Backend>>
 
 [-> frontend: frontend
 frontend -> productcatalogservice: ProductCatalogService/GetProduct
@@ -18,5 +49,19 @@ recommendationservice -> productcatalogservice: ProductCatalogService/ListProduc
 productcatalogservice --> recommendationservice
 frontend -> productcatalogservice: ProductCatalogService/GetProduct [x5]
 productcatalogservice --> frontend
+
+legend right
+  |= Stereotype |= Description |
+  | <<Frontend>> | User Interface/Web Service |
+  | <<Backend>> | Backend Service/API |
+  | <<Database>> | Database Service |
+  | <<Cache>> | Caching Service |
+  | [xN] | Operation repeated N times |
+endlegend
+
+footer
+  Generated: 2025-12-16 13:35:30 | Services: 4 | Interactions: 7
+  Trace ID: 308434757fd53629
+endfooter
 
 @enduml

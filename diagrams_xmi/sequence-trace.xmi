@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmi:version="2.5.1">
+  <uml:Model name="trace_Sequence" xmi:id="_9bf1533d1d524f199d3d44de05509857">
+    <packagedElement name="trace_Sequence_Interaction" xmi:id="_fc65d9d95e7941e498fea7d498dbe558" xmi:type="uml:Interaction" xmlns="http://www.eclipse.org/uml2/5.0.0/UML">
+      <lifeline name="currencyservice" represents="currencyservice" xmi:id="_5e854180c7c24cb9847c029634bdf692"/>
+      <lifeline name="frontend" represents="frontend" xmi:id="_8c4186dc1fed419f98aba609ee0393bc"/>
+      <lifeline name="productcatalogservice" represents="productcatalogservice" xmi:id="_d1d364cd028643b4bf2df4f2e8efea02"/>
+      <lifeline name="recommendationservice" represents="recommendationservice" xmi:id="_e984271b37df4c8b9e4d3479ce7274c6"/>
+      <fragment covered="_8c4186dc1fed419f98aba609ee0393bc" name="msg0_send" xmi:id="_d3e3d1797cba4593afc3f4912714a398" xmi:type="uml:MessageOccurrenceSpecification"/>
+      <fragment covered="_d1d364cd028643b4bf2df4f2e8efea02" name="msg0_receive" xmi:id="_73094ca59b2b489281261b35de7c46a0" xmi:type="uml:MessageOccurrenceSpecification"/>
+      <message messageSort="synchCall" name="ProductCatalogService/GetProduct" receiveEvent="_73094ca59b2b489281261b35de7c46a0" sendEvent="_d3e3d1797cba4593afc3f4912714a398" xmi:id="_a7214e3e9b92415abe62b2c13dcababc">
+        <ownedComment xmi:id="_aa501c72fd144cd489be02d7564392df">
+          <body>Duration: 67μs</body>
+        </ownedComment>
+      </message>
+      <fragment covered="_8c4186dc1fed419f98aba609ee0393bc" name="msg1_send" xmi:id="_035dcf06302f4ab999aaa89239396949" xmi:type="uml:MessageOccurrenceSpecification"/>
+      <fragment covered="_e984271b37df4c8b9e4d3479ce7274c6" name="msg1_receive" xmi:id="_ba6a985161284becb687ab143a528568" xmi:type="uml:MessageOccurrenceSpecification"/>
+      <message messageSort="synchCall" name="RecommendationService/ListRecommendations" receiveEvent="_ba6a985161284becb687ab143a528568" sendEvent="_035dcf06302f4ab999aaa89239396949" xmi:id="_ad6bc0e9a39c40cf8f20411cd28299d2">
+        <ownedComment xmi:id="_1c704c9b800f4966bfb1af07ed533496">
+          <body>Duration: 1164μs</body>
+        </ownedComment>
+      </message>
+      <fragment covered="_e984271b37df4c8b9e4d3479ce7274c6" name="msg2_send" xmi:id="_5f6ae229ab4f450993b8d7e00882b860" xmi:type="uml:MessageOccurrenceSpecification"/>
+      <fragment covered="_d1d364cd028643b4bf2df4f2e8efea02" name="msg2_receive" xmi:id="_d903f829664b459ab38ae9e3223561c1" xmi:type="uml:MessageOccurrenceSpecification"/>
+      <message messageSort="synchCall" name="ProductCatalogService/ListProducts" receiveEvent="_d903f829664b459ab38ae9e3223561c1" sendEvent="_5f6ae229ab4f450993b8d7e00882b860" xmi:id="_4458ec7788b84c0bb7e497a50c7270ed">
+        <ownedComment xmi:id="_af30e245c04e402f94586ad88646b6e7">
+          <body>Duration: 51μs</body>
+        </ownedComment>
+      </message>
+      <fragment covered="_8c4186dc1fed419f98aba609ee0393bc" name="msg3_send" xmi:id="_d6af5b7cf3534f5aafa8aa52f4124da4" xmi:type="uml:MessageOccurrenceSpecification"/>
+      <fragment covered="_d1d364cd028643b4bf2df4f2e8efea02" name="msg3_receive" xmi:id="_4ecf72045daf4ca68a5bcc234a476cc1" xmi:type="uml:MessageOccurrenceSpecification"/>
+      <message messageSort="synchCall" name="ProductCatalogService/GetProduct" receiveEvent="_4ecf72045daf4ca68a5bcc234a476cc1" sendEvent="_d6af5b7cf3534f5aafa8aa52f4124da4" xmi:id="_a8439724dfcc489f88e47f6b809afec5">
+        <ownedComment xmi:id="_9659445779a54a8398c6e7df2c89694d">
+          <body>Duration: 24μs</body>
+        </ownedComment>
+      </message>
+      <fragment covered="_8c4186dc1fed419f98aba609ee0393bc" name="msg4_send" xmi:id="_66c80ba61e0941ba9aa7f212ace667ff" xmi:type="uml:MessageOccurrenceSpecification"/>
+      <fragment covered="_d1d364cd028643b4bf2df4f2e8efea02" name="msg4_receive" xmi:id="_da08b37092cc42abaecb43a02375a429" xmi:type="uml:MessageOccurrenceSpecification"/>
+      <message messageSort="synchCall" name="ProductCatalogService/GetProduct" receiveEvent="_da08b37092cc42abaecb43a02375a429" sendEvent="_66c80ba61e0941ba9aa7f212ace667ff" xmi:id="_a569cc716f634f91b48b9ce6575d365d">
+        <ownedComment xmi:id="_bbe82dccae9b4b0dbe866600e3a4e96e">
+          <body>Duration: 22μs</body>
+        </ownedComment>
+      </message>
+      <fragment covered="_8c4186dc1fed419f98aba609ee0393bc" name="msg5_send" xmi:id="_aab5e5f9f43640cf950b34a0bf0f17fd" xmi:type="uml:MessageOccurrenceSpecification"/>
+      <fragment covered="_d1d364cd028643b4bf2df4f2e8efea02" name="msg5_receive" xmi:id="_123f64a744a048b788a729190b70b63b" xmi:type="uml:MessageOccurrenceSpecification"/>
+      <message messageSort="synchCall" name="ProductCatalogService/GetProduct" receiveEvent="_123f64a744a048b788a729190b70b63b" sendEvent="_aab5e5f9f43640cf950b34a0bf0f17fd" xmi:id="_f12f974c65f74c089f955b98961efc86">
+        <ownedComment xmi:id="_edd3e7fef7b7494e9c882a131941afc0">
+          <body>Duration: 19μs</body>
+        </ownedComment>
+      </message>
+      <fragment covered="_8c4186dc1fed419f98aba609ee0393bc" name="msg6_send" xmi:id="_955319ff8609470295faf0ba02061207" xmi:type="uml:MessageOccurrenceSpecification"/>
+      <fragment covered="_d1d364cd028643b4bf2df4f2e8efea02" name="msg6_receive" xmi:id="_0e021cc12824411e868ad4ebc68f8724" xmi:type="uml:MessageOccurrenceSpecification"/>
+      <message messageSort="synchCall" name="ProductCatalogService/GetProduct" receiveEvent="_0e021cc12824411e868ad4ebc68f8724" sendEvent="_955319ff8609470295faf0ba02061207" xmi:id="_3c459a9f12364d53af82a6eb05e70315">
+        <ownedComment xmi:id="_8e66fafa1aab478ebeb09984fe3cfd4c">
+          <body>Duration: 44μs</body>
+        </ownedComment>
+      </message>
+      <fragment covered="_8c4186dc1fed419f98aba609ee0393bc" name="msg7_send" xmi:id="_2bf55281824e44aaafe7af81366cef0a" xmi:type="uml:MessageOccurrenceSpecification"/>
+      <fragment covered="_d1d364cd028643b4bf2df4f2e8efea02" name="msg7_receive" xmi:id="_86b276d2a9ce4e10a6649a87d36ae903" xmi:type="uml:MessageOccurrenceSpecification"/>
+      <message messageSort="synchCall" name="ProductCatalogService/GetProduct" receiveEvent="_86b276d2a9ce4e10a6649a87d36ae903" sendEvent="_2bf55281824e44aaafe7af81366cef0a" xmi:id="_350c97e6b90a4b2891b4a6e73895e5b4">
+        <ownedComment xmi:id="_44017df99cc04e6dbd41be72b0e9105e">
+          <body>Duration: 17μs</body>
+        </ownedComment>
+      </message>
+    </packagedElement>
+  </uml:Model>
+</xmi:XMI>

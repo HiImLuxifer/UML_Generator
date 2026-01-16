@@ -2,20 +2,24 @@ package com.uml.generator.generator;
 
 import com.uml.generator.model.Span;
 import com.uml.generator.model.Trace;
+import com.uml.generator.renderer.XmiWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Generates UML Sequence Diagrams from Jaeger traces.
+ * Generates UML Sequence Diagrams in XMI 2.5.1 format from Jaeger traces.
  * Each trace produces one sequence diagram showing the flow of calls.
  */
 public class SequenceDiagramGenerator implements DiagramGenerator {
 
     private static final Logger logger = LoggerFactory.getLogger(SequenceDiagramGenerator.class);
+    private static final String UML_NAMESPACE = "http://www.eclipse.org/uml2/5.0.0/UML";
 
     @Override
     public String getDiagramType() {
@@ -23,176 +27,165 @@ public class SequenceDiagramGenerator implements DiagramGenerator {
     }
 
     @Override
-    public String generatePlantUML(List<Trace> traces) {
+    public String generateXmi(List<Trace> traces) {
         if (traces == null || traces.isEmpty()) {
             logger.warn("No traces provided for sequence diagram generation");
             return "";
         }
 
-        // For sequence diagrams, we generate one diagram per trace
-        // If multiple traces, we'll combine them or you can modify to generate separate
-        // files
-        StringBuilder allDiagrams = new StringBuilder();
-
-        for (int i = 0; i < traces.size(); i++) {
-            Trace trace = traces.get(i);
-            String diagram = generateSequenceDiagramForTrace(trace, i);
-            allDiagrams.append(diagram);
-
-            if (i < traces.size() - 1) {
-                allDiagrams.append("\n\n");
-            }
-        }
-
-        return allDiagrams.toString();
+        // For sequence diagrams, generate for the first trace
+        // (multiple traces would require multiple XMI files)
+        return generateXmiForTrace(traces.get(0), 0);
     }
 
     /**
-     * Generates a PlantUML sequence diagram for a single trace.
+     * Generates XMI for a single trace.
      * This method is public to allow generating separate diagrams for each trace.
-     *
-     * @param trace The trace to generate diagram for
-     * @param index The index of the trace (used in diagram title)
-     * @return PlantUML source code for the sequence diagram
      */
-    public String generatePlantUMLForTrace(Trace trace, int index) {
+    public String generateXmiForTrace(Trace trace, int index) {
         if (trace == null) {
             logger.warn("Null trace provided for sequence diagram generation");
             return "";
         }
-        return generateSequenceDiagramForTrace(trace, index);
-    }
 
-    /**
-     * Generates a sequence diagram for a single trace with deduplication.
-     */
-    private String generateSequenceDiagramForTrace(Trace trace, int index) {
-        StringBuilder puml = new StringBuilder();
+        try {
+            XmiWriter writer = new XmiWriter();
 
-        puml.append("@startuml\n");
-        puml.append("title Sequence Diagram - Trace ").append(index + 1).append("\n");
-        puml.append("autonumber\n\n");
+            // Determine model name
+            String modelName = "SequenceDiagram";
+            if (trace.getSourceName() != null) {
+                modelName = trace.getSourceName() + "_Sequence";
+            }
 
-        // Get all participants (services)
-        List<String> services = trace.getAllServiceNames();
-        for (String service : services) {
-            puml.append("participant \"").append(service).append("\" as ").append(sanitizeId(service)).append("\n");
-        }
-        puml.append("\n");
+            // Create XMI document
+            Document doc = writer.createXmiDocument(modelName);
+            Element model = writer.getModelElement(doc);
 
-        // Process spans in chronological order
-        List<Span> sortedSpans = trace.getSpansSortedByTime();
-        Map<String, String> spanToService = new HashMap<>();
+            // Create Interaction element
+            Element interaction = doc.createElementNS(UML_NAMESPACE, "packagedElement");
+            interaction.setAttribute("xmi:type", "uml:Interaction");
+            String interactionId = XmiWriter.generateUUID();
+            interaction.setAttribute("xmi:id", interactionId);
+            interaction.setAttribute("name", modelName + "_Interaction");
+            model.appendChild(interaction);
 
-        for (Span span : sortedSpans) {
-            spanToService.put(span.getSpanID(), trace.getServiceName(span));
-        }
+            // Get all services and create lifelines
+            List<String> services = trace.getAllServiceNames();
+            Map<String, String> serviceToLifelineId = new HashMap<>();
 
-        // Track last call for deduplication
-        String lastCall = null;
-        int callCount = 0;
+            for (String service : services) {
+                String lifelineId = createLifeline(doc, interaction, service);
+                serviceToLifelineId.put(service, lifelineId);
+            }
 
-        // Generate interactions with deduplication
-        for (Span span : sortedSpans) {
-            String currentService = trace.getServiceName(span);
-            String parentSpanId = span.getParentSpanId();
+            // Process spans and create messages
+            List<Span> sortedSpans = trace.getSpansSortedByTime();
+            Map<String, String> spanToService = new HashMap<>();
 
-            if (parentSpanId != null) {
-                String parentService = spanToService.get(parentSpanId);
+            for (Span span : sortedSpans) {
+                spanToService.put(span.getSpanID(), trace.getServiceName(span));
+            }
 
-                if (parentService != null && !parentService.equals(currentService)) {
-                    // Cross-service call
-                    String cleanOperation = com.uml.generator.util.NameUtils
-                            .cleanOperationName(span.getOperationName());
-                    String currentCall = parentService + "->" + currentService + ":" + cleanOperation;
+            int messageCounter = 0;
+            int totalMessages = 0;
 
-                    // Check for deduplication
-                    if (currentCall.equals(lastCall)) {
-                        callCount++;
-                    } else {
-                        // Output previous call with count if needed
-                        if (lastCall != null && callCount > 0) {
-                            outputCallWithCount(puml, lastCall, callCount);
+            for (Span span : sortedSpans) {
+                String currentService = trace.getServiceName(span);
+                String parentSpanId = span.getParentSpanId();
+
+                if (parentSpanId != null) {
+                    String parentService = spanToService.get(parentSpanId);
+
+                    if (parentService != null && !parentService.equals(currentService)) {
+                        // Cross-service call
+                        String fromLifelineId = serviceToLifelineId.get(parentService);
+                        String toLifelineId = serviceToLifelineId.get(currentService);
+
+                        if (fromLifelineId != null && toLifelineId != null) {
+                            String cleanOperation = com.uml.generator.util.NameUtils
+                                    .cleanOperationName(span.getOperationName());
+
+                            createMessage(doc, interaction, "msg" + messageCounter,
+                                    cleanOperation, fromLifelineId, toLifelineId,
+                                    "synchCall", span.getDuration());
+
+                            messageCounter++;
+                            totalMessages++;
                         }
-
-                        // Reset for new call
-                        lastCall = currentCall;
-                        callCount = 1;
                     }
                 }
-            } else if (span.isRootSpan()) {
-                // Flush any pending deduplicated call first
-                if (lastCall != null && callCount > 0) {
-                    outputCallWithCount(puml, lastCall, callCount);
-                    lastCall = null;
-                    callCount = 0;
-                }
-
-                // Root span - external trigger or user
-                String cleanOperation = com.uml.generator.util.NameUtils.cleanOperationName(span.getOperationName());
-                puml.append("[-> ")
-                        .append(sanitizeId(currentService))
-                        .append(": ")
-                        .append(cleanOperation)
-                        .append("\n");
             }
+
+            logger.info("Generated sequence diagram XMI for trace {} with {} participants and {} messages",
+                    trace.getTraceID(), services.size(), totalMessages);
+
+            return writer.documentToString(doc);
+
+        } catch (Exception e) {
+            logger.error("Failed to generate sequence diagram XMI", e);
+            return "";
         }
-
-        // Output final deduplicated call if exists
-        if (lastCall != null && callCount > 0) {
-            outputCallWithCount(puml, lastCall, callCount);
-        }
-
-        puml.append("\n@enduml");
-
-        logger.info("Generated sequence diagram for trace {}", trace.getTraceID());
-
-        return puml.toString();
     }
 
     /**
-     * Helper method to output a call with optional multiplicity notation.
+     * Creates a UML Lifeline element.
      */
-    private void outputCallWithCount(StringBuilder puml, String callSignature, int count) {
-        // Parse call signature: "fromService->toService:operation"
-        String[] parts = callSignature.split("->");
-        if (parts.length != 2)
-            return;
+    private String createLifeline(Document doc, Element interaction, String serviceName) {
+        Element lifeline = doc.createElementNS(UML_NAMESPACE, "lifeline");
+        String lifelineId = XmiWriter.generateUUID();
+        lifeline.setAttribute("xmi:id", lifelineId);
+        lifeline.setAttribute("name", serviceName);
 
-        String fromService = parts[0];
-        String[] toParts = parts[1].split(":", 2);
-        if (toParts.length != 2)
-            return;
+        // Create represented element (the classifier this lifeline represents)
+        lifeline.setAttribute("represents", serviceName);
 
-        String toService = toParts[0];
-        String operation = toParts[1];
-
-        // Output call
-        puml.append(sanitizeId(fromService))
-                .append(" -> ")
-                .append(sanitizeId(toService))
-                .append(": ")
-                .append(operation);
-
-        if (count > 1) {
-            puml.append(" [x").append(count).append("]");
-        }
-
-        puml.append("\n");
-
-        // Return message
-        puml.append(sanitizeId(toService))
-                .append(" --> ")
-                .append(sanitizeId(fromService))
-                .append("\n");
+        interaction.appendChild(lifeline);
+        return lifelineId;
     }
 
     /**
-     * Sanitizes a service name to be used as a PlantUML ID.
+     * Creates a UML Message with send and receive events.
      */
-    private String sanitizeId(String name) {
-        if (name == null)
-            return "unknown";
-        return name.replaceAll("[^a-zA-Z0-9_]", "_");
+    private void createMessage(Document doc, Element interaction, String messageName,
+            String operationName, String fromLifelineId, String toLifelineId,
+            String messageSort, long duration) {
+
+        // Create send event
+        Element sendEvent = doc.createElementNS(UML_NAMESPACE, "fragment");
+        sendEvent.setAttribute("xmi:type", "uml:MessageOccurrenceSpecification");
+        String sendEventId = XmiWriter.generateUUID();
+        sendEvent.setAttribute("xmi:id", sendEventId);
+        sendEvent.setAttribute("name", messageName + "_send");
+        sendEvent.setAttribute("covered", fromLifelineId);
+        interaction.appendChild(sendEvent);
+
+        // Create receive event
+        Element receiveEvent = doc.createElementNS(UML_NAMESPACE, "fragment");
+        receiveEvent.setAttribute("xmi:type", "uml:MessageOccurrenceSpecification");
+        String receiveEventId = XmiWriter.generateUUID();
+        receiveEvent.setAttribute("xmi:id", receiveEventId);
+        receiveEvent.setAttribute("name", messageName + "_receive");
+        receiveEvent.setAttribute("covered", toLifelineId);
+        interaction.appendChild(receiveEvent);
+
+        // Create message
+        Element message = doc.createElementNS(UML_NAMESPACE, "message");
+        message.setAttribute("xmi:id", XmiWriter.generateUUID());
+        message.setAttribute("name", operationName);
+        message.setAttribute("messageSort", messageSort);
+        message.setAttribute("sendEvent", sendEventId);
+        message.setAttribute("receiveEvent", receiveEventId);
+
+        // Add timing information as a comment if available
+        if (duration > 0) {
+            Element comment = doc.createElementNS(UML_NAMESPACE, "ownedComment");
+            comment.setAttribute("xmi:id", XmiWriter.generateUUID());
+            Element body = doc.createElementNS(UML_NAMESPACE, "body");
+            body.setTextContent("Duration: " + duration + "μs");
+            comment.appendChild(body);
+            message.appendChild(comment);
+        }
+
+        interaction.appendChild(message);
     }
 }

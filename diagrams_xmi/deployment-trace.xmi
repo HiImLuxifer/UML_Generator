@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmi:version="2.5.1">
+  <uml:Model name="trace_Deployment" xmi:id="_9eb8ef110b634a899dd52c28c8ec3eaa">
+    <packagedElement name="Node-538" xmi:id="_2e666c2bba6947e0911f4750b2d9874d" xmi:type="uml:Node" xmlns="http://www.eclipse.org/uml2/5.0.0/UML"/>
+    <packagedElement name="recommendationservice" xmi:id="_1adedef3fad74c0bb7574a8bec916b3f" xmi:type="uml:Artifact" xmlns="http://www.eclipse.org/uml2/5.0.0/UML"/>
+    <packagedElement deployedArtifact="_1adedef3fad74c0bb7574a8bec916b3f" location="_2e666c2bba6947e0911f4750b2d9874d" name="Node-538_deploys_recommendationservice" xmi:id="_d666d970923c41978ccb022787dbb053" xmi:type="uml:Deployment" xmlns="http://www.eclipse.org/uml2/5.0.0/UML"/>
+    <packagedElement name="Node-8353" xmi:id="_0e06ad78aa1949d08c57ee55c2040081" xmi:type="uml:Node" xmlns="http://www.eclipse.org/uml2/5.0.0/UML"/>
+    <packagedElement name="productcatalogservice" xmi:id="_ea92af86a18140ed968ea76feaf95f26" xmi:type="uml:Artifact" xmlns="http://www.eclipse.org/uml2/5.0.0/UML"/>
+    <packagedElement deployedArtifact="_ea92af86a18140ed968ea76feaf95f26" location="_0e06ad78aa1949d08c57ee55c2040081" name="Node-8353_deploys_productcatalogservice" xmi:id="_320b63b1404c476ca20bd3bf9a438880" xmi:type="uml:Deployment" xmlns="http://www.eclipse.org/uml2/5.0.0/UML"/>
+    <packagedElement name="frontend" xmi:id="_d4599890e7134f428c8f64ded74717ea" xmi:type="uml:Artifact" xmlns="http://www.eclipse.org/uml2/5.0.0/UML"/>
+    <packagedElement deployedArtifact="_d4599890e7134f428c8f64ded74717ea" location="_0e06ad78aa1949d08c57ee55c2040081" name="Node-8353_deploys_frontend" xmi:id="_6652c7be66dc4b3b9a34667dd285f335" xmi:type="uml:Deployment" xmlns="http://www.eclipse.org/uml2/5.0.0/UML"/>
+    <packagedElement name="currencyservice-6d559b9456-xmf5z" xmi:id="_35419fa4f8944a5682582b6d93ae91e3" xmi:type="uml:Node" xmlns="http://www.eclipse.org/uml2/5.0.0/UML"/>
+    <packagedElement name="currencyservice" xmi:id="_93596cf9148e4eadb019676f45fd41dd" xmi:type="uml:Artifact" xmlns="http://www.eclipse.org/uml2/5.0.0/UML"/>
+    <packagedElement deployedArtifact="_93596cf9148e4eadb019676f45fd41dd" location="_35419fa4f8944a5682582b6d93ae91e3" name="currencyservice-6d559b9456-xmf5z_deploys_currencyservice" xmi:id="_99a1eaad87cc440d9dde2199dddc5e67" xmi:type="uml:Deployment" xmlns="http://www.eclipse.org/uml2/5.0.0/UML"/>
+    <packagedElement name="Node-538_to_Node-8353" xmi:id="_3f0dba69a82f49a8bbf3b76064ffbf92" xmi:type="uml:CommunicationPath" xmlns="http://www.eclipse.org/uml2/5.0.0/UML">
+      <memberEnd xmi:idref="_2e666c2bba6947e0911f4750b2d9874d"/>
+      <memberEnd xmi:idref="_0e06ad78aa1949d08c57ee55c2040081"/>
+    </packagedElement>
+  </uml:Model>
+</xmi:XMI>

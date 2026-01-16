@@ -1,22 +1,56 @@
 @startuml
-title Deployment Diagram - Infrastructure
+'https://plantuml.com/deployment-diagram
 
-node "Node-538" {
-  artifact "recommendationservice"
+skinparam nodeBackgroundColor LightSkyBlue
+skinparam nodeBorderColor DeepSkyBlue
+skinparam artifactBackgroundColor LightGreen
+skinparam artifactBorderColor Green
+skinparam componentBackgroundColor LightYellow
+skinparam packageBackgroundColor LightGray
+skinparam packageBorderColor DarkGray
+skinparam stereotypeCBackgroundColor YellowGreen
+skinparam shadowing true
+skinparam roundcorner 10
+
+title Deployment Diagram - Infrastructure View
+
+header
+  <font color=blue>UML Generator</font>
+  Infrastructure Topology from Jaeger Traces
+endheader
+
+package "Backend Zone" #LightGreen {
+  node "Node-538" {
+    artifact "recommendationservice" <<API>>
+  }
+  node "Node-8353" {
+    artifact "productcatalogservice" <<API>>
+    artifact "frontend" <<Web>>
+  }
+  node "currencyservice-6d559b9456-xmf5z" {
+    artifact "currencyservice" <<API>>
+  }
 }
 
-node "Node-8353" {
-  artifact "productcatalogservice"
-  artifact "frontend"
-}
-
-node "currencyservice-6d559b9456-xmf5z" {
-  artifact "currencyservice"
-}
-
-' Service dependencies
+' Service Dependencies
 "recommendationservice" --> "productcatalogservice"
 "frontend" --> "recommendationservice"
 "frontend" --> "productcatalogservice"
+
+legend right
+  |= Zone |= Services |
+  | Backend Zone | 3 |
+  | Frontend Zone | 1 |
+  
+  **Stereotypes:**
+  * <<Web>> - Frontend/UI Service
+  * <<API>> - Backend Service
+  * <<DB>> - Database Service
+  * <<Cache>> - Caching Layer
+endlegend
+
+footer
+  Generated: 2025-12-16 13:35:33 | Zones: 1 | Nodes: 3 | Services: 4
+endfooter
 
 @enduml

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmi:version="2.5.1">
+  <uml:Model xmi:id="92e26f84-2f9e-4108-b656-b6a18d00fbb3" name="taccia_frontend_Deployment">
+    <packagedElement xmi:type="uml:Node" xmi:id="7df25489-819e-4a7c-aef0-c1edc79369c2" name="currencyservice-6d559b9456-xmf5z" />
+    <packagedElement xmi:type="uml:Artifact" xmi:id="06b55ed9-85ed-4920-b024-bde191df75ed" name="currencyservice" />
+    <packagedElement xmi:type="uml:Deployment" xmi:id="1d4eb2f4-1c33-4682-aafe-cac8eb80f1c2" name="currencyservice-6d559b9456-xmf5z_deploys_currencyservice" location="7df25489-819e-4a7c-aef0-c1edc79369c2" deployedArtifact="06b55ed9-85ed-4920-b024-bde191df75ed" />
+    <packagedElement xmi:type="uml:Node" xmi:id="7dd31c10-dabf-4157-8cfa-e6eac988deca" name="Node-3789" />
+    <packagedElement xmi:type="uml:Artifact" xmi:id="63d9794b-b061-43b9-a54e-bef0563db32d" name="frontend" />
+    <packagedElement xmi:type="uml:Deployment" xmi:id="3d086b9c-8c8f-4099-a741-d4de1d50a91f" name="Node-3789_deploys_frontend" location="7dd31c10-dabf-4157-8cfa-e6eac988deca" deployedArtifact="63d9794b-b061-43b9-a54e-bef0563db32d" />
+    <packagedElement xmi:type="uml:Artifact" xmi:id="a94186a6-9fdc-4ea3-a211-f30a4e48173f" name="productcatalogservice" />
+    <packagedElement xmi:type="uml:Deployment" xmi:id="c4c4354b-7885-4fe0-b07d-ce2145854ac1" name="Node-3789_deploys_productcatalogservice" location="7dd31c10-dabf-4157-8cfa-e6eac988deca" deployedArtifact="a94186a6-9fdc-4ea3-a211-f30a4e48173f" />
+  </uml:Model>
+</xmi:XMI>

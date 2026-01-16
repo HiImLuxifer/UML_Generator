@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmi:version="2.5.1">
+  <uml:Model xmi:id="a788d961-3b48-4060-8840-73780d50cdda" name="taccia_frontend_Sequence">
+    <packagedElement xmi:type="uml:Class" xmi:id="ffe13443-2653-42d3-b8ca-aa4572af93fc" name="currencyservice" />
+    <packagedElement xmi:type="uml:Class" xmi:id="974d6a26-48f1-4eec-82fd-4ead4a3f98c6" name="frontend" />
+    <packagedElement xmi:type="uml:Class" xmi:id="09ca3879-ac42-4b12-9fdd-48b63bd1a52c" name="productcatalogservice" />
+    <packagedElement xmi:type="uml:Collaboration" xmi:id="ce99a861-2ed0-4eed-91fc-d36dda9ea77e" name="taccia_frontend_Sequence_Collaboration">
+      <ownedAttribute xmi:id="a9811ff5-81f1-4328-bfeb-ddd8e065f372" name="currencyservice" type="ffe13443-2653-42d3-b8ca-aa4572af93fc" />
+      <ownedAttribute xmi:id="952647f3-e6ca-4901-9712-9f5f526c4758" name="frontend" type="974d6a26-48f1-4eec-82fd-4ead4a3f98c6" />
+      <ownedAttribute xmi:id="17148160-9b0e-4a61-b9a4-c0e217862d4c" name="productcatalogservice" type="09ca3879-ac42-4b12-9fdd-48b63bd1a52c" />
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="25086fa9-f276-4237-9d62-a8e26242963f" name="taccia_frontend_Sequence_Interaction">
+      <lifeline xmi:id="0723d63c-a32f-48e8-9bdd-06b5b08c0cd2" name="currencyservice" represents="a9811ff5-81f1-4328-bfeb-ddd8e065f372" />
+      <lifeline xmi:id="518e7cf5-832e-4a18-9ace-18bea0816a27" name="frontend" represents="952647f3-e6ca-4901-9712-9f5f526c4758" />
+      <lifeline xmi:id="f15e426d-1668-4bd8-8c39-cb29de738348" name="productcatalogservice" represents="17148160-9b0e-4a61-b9a4-c0e217862d4c" />
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="035542f0-d520-4dad-8cfb-fb0b45fea11f" name="msg0_send" covered="518e7cf5-832e-4a18-9ace-18bea0816a27" />
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="2cf756ac-9eec-47db-9f5f-1cadc8e5b204" name="msg0_receive" covered="f15e426d-1668-4bd8-8c39-cb29de738348" />
+      <message xmi:id="cefcd809-d82f-4e40-a60a-046badcce4fd" name="hipstershop.ProductCatalogService/ListProducts" messageSort="synchCall" sendEvent="035542f0-d520-4dad-8cfb-fb0b45fea11f" receiveEvent="2cf756ac-9eec-47db-9f5f-1cadc8e5b204">
+        <ownedComment xmi:id="0752d02e-1d85-4e8c-bdb9-723ca7ddac5b">
+          <body>Duration: 82μs</body>
+        </ownedComment>
+      </message>
+    </packagedElement>
+  </uml:Model>
+</xmi:XMI>

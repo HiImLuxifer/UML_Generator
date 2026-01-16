@@ -1,14 +1,45 @@
 @startuml
-title Sequence Diagram - Trace 2
-autonumber
+'https://plantuml.com/sequence-diagram
 
-participant "checkoutservice" as checkoutservice
-participant "currencyservice" as currencyservice
-participant "emailservice" as emailservice
-participant "frontend" as frontend
-participant "paymentservice" as paymentservice
-participant "productcatalogservice" as productcatalogservice
-participant "recommendationservice" as recommendationservice
+skinparam sequenceArrowThickness 2
+skinparam roundcorner 10
+skinparam maxMessageSize 200
+skinparam sequenceParticipant underline
+
+skinparam sequence {
+  ArrowColor DeepSkyBlue
+  ActorBorderColor DeepSkyBlue
+  LifeLineBorderColor blue
+  LifeLineBackgroundColor #A9DCDF
+  ParticipantBorderColor DeepSkyBlue
+  ParticipantBackgroundColor DodgerBlue
+  ParticipantFontName Impact
+  ParticipantFontSize 17
+  ParticipantFontColor #A9DCDF
+  ActorBackgroundColor aqua
+  ActorFontColor DeepSkyBlue
+  ActorFontSize 17
+  ActorFontName Aapex
+  BoxBorderColor GreenYellow
+  BoxFontSize 12
+}
+
+title Sequence Diagram - Traccia payment
+
+header
+  <font color=red>UML Generator</font>
+  Jaeger Trace Analysis
+endheader
+
+autonumber "<b>[0]"
+
+participant "checkoutservice" as checkoutservice <<Backend>>
+participant "currencyservice" as currencyservice <<Backend>>
+participant "emailservice" as emailservice <<Backend>>
+participant "frontend" as frontend <<Frontend>>
+participant "paymentservice" as paymentservice <<Backend>>
+participant "productcatalogservice" as productcatalogservice <<Backend>>
+participant "recommendationservice" as recommendationservice <<Backend>>
 
 [-> frontend: frontend
 frontend -> checkoutservice: CheckoutService/PlaceOrder
@@ -25,5 +56,19 @@ productcatalogservice --> recommendationservice
 frontend -> productcatalogservice: ProductCatalogService/GetProduct [x5]
 productcatalogservice --> frontend
 [-> currencyservice: CurrencyService/GetSupportedCurrencies
+
+legend right
+  |= Stereotype |= Description |
+  | <<Frontend>> | User Interface/Web Service |
+  | <<Backend>> | Backend Service/API |
+  | <<Database>> | Database Service |
+  | <<Cache>> | Caching Service |
+  | [xN] | Operation repeated N times |
+endlegend
+
+footer
+  Generated: 2025-12-16 13:35:33 | Services: 7 | Interactions: 9
+  Trace ID: 34382ccbe6aae308
+endfooter
 
 @enduml

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmi:version="2.5.1">
+  <uml:Model xmi:id="069ecb3a-6d53-42e5-8d96-3f9c80adf7d6" name="traccia_frontend2_Sequence">
+    <packagedElement xmi:type="uml:Class" xmi:id="327b22da-b1f5-4420-b16a-67aa57484712" name="currencyservice" />
+    <packagedElement xmi:type="uml:Class" xmi:id="bf394b31-fb31-4402-9f48-ecee843264cf" name="frontend" />
+    <packagedElement xmi:type="uml:Class" xmi:id="3acbac08-2a70-4b41-be7f-1451bb7ade75" name="productcatalogservice" />
+    <packagedElement xmi:type="uml:Class" xmi:id="c42d1b46-729a-4ff1-bc41-94790ae10c6c" name="recommendationservice" />
+    <packagedElement xmi:type="uml:Collaboration" xmi:id="ac0d3c12-a6ac-41fb-b6f4-37f6ad5ab933" name="traccia_frontend2_Sequence_Collaboration">
+      <ownedAttribute xmi:id="9dbb5980-5f6e-4ea1-925d-0996ad4c44af" name="currencyservice" type="327b22da-b1f5-4420-b16a-67aa57484712" />
+      <ownedAttribute xmi:id="2bac4ae5-e5cc-4f65-a010-016f0daa293d" name="frontend" type="bf394b31-fb31-4402-9f48-ecee843264cf" />
+      <ownedAttribute xmi:id="0591527f-4a0c-4c0f-92e1-90794c626a3c" name="productcatalogservice" type="3acbac08-2a70-4b41-be7f-1451bb7ade75" />
+      <ownedAttribute xmi:id="9fd284c8-6960-4971-a991-5b70405ed7e4" name="recommendationservice" type="c42d1b46-729a-4ff1-bc41-94790ae10c6c" />
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="f602b970-9bdb-4e00-a18d-39d3953d8b71" name="traccia_frontend2_Sequence_Interaction">
+      <lifeline xmi:id="1366d963-ba40-44f9-82d4-55299079f284" name="currencyservice" represents="9dbb5980-5f6e-4ea1-925d-0996ad4c44af" />
+      <lifeline xmi:id="63aadc4f-3fbb-4c13-93f8-b97b566f9b98" name="frontend" represents="2bac4ae5-e5cc-4f65-a010-016f0daa293d" />
+      <lifeline xmi:id="fcda1ff6-a1b3-497c-b32b-21e0128648f6" name="productcatalogservice" represents="0591527f-4a0c-4c0f-92e1-90794c626a3c" />
+      <lifeline xmi:id="5d560043-0ef3-47bd-b5a5-4e784bb51235" name="recommendationservice" represents="9fd284c8-6960-4971-a991-5b70405ed7e4" />
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="55a1d84b-d0e6-4fa5-9b93-5d1a2f7b5a3c" name="msg0_send" covered="63aadc4f-3fbb-4c13-93f8-b97b566f9b98" />
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="a0f1bf67-19ef-4517-85e8-6311734d9533" name="msg0_receive" covered="fcda1ff6-a1b3-497c-b32b-21e0128648f6" />
+      <message xmi:id="f133cc64-3457-44b6-83f1-6f1621b64b29" name="hipstershop.ProductCatalogService/GetProduct" messageSort="synchCall" sendEvent="55a1d84b-d0e6-4fa5-9b93-5d1a2f7b5a3c" receiveEvent="a0f1bf67-19ef-4517-85e8-6311734d9533">
+        <ownedComment xmi:id="9210334d-3a77-48ee-81ba-ce85249a1f68">
+          <body>Duration: 93μs</body>
+        </ownedComment>
+      </message>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="4e986e7f-b0a2-4275-a430-e8260724ae20" name="msg1_send" covered="63aadc4f-3fbb-4c13-93f8-b97b566f9b98" />
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="7f8075ce-cdde-4be3-8613-fb13e0c76a29" name="msg1_receive" covered="5d560043-0ef3-47bd-b5a5-4e784bb51235" />
+      <message xmi:id="6c12653d-cb8b-40a5-82f5-11a3d8fc4503" name="/hipstershop.RecommendationService/ListRecommendations" messageSort="synchCall" sendEvent="4e986e7f-b0a2-4275-a430-e8260724ae20" receiveEvent="7f8075ce-cdde-4be3-8613-fb13e0c76a29">
+        <ownedComment xmi:id="f4118806-846a-42fe-85ff-43833c273dee">
+          <body>Duration: 1178μs</body>
+        </ownedComment>
+      </message>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="c8d062d9-7f9d-44ea-87c3-aa36c6f44f27" name="msg2_send" covered="5d560043-0ef3-47bd-b5a5-4e784bb51235" />
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="320a8481-1ac4-44d3-aa90-37df698902f9" name="msg2_receive" covered="fcda1ff6-a1b3-497c-b32b-21e0128648f6" />
+      <message xmi:id="31a66484-6eb4-4788-a35d-f0f44a9be0a7" name="hipstershop.ProductCatalogService/ListProducts" messageSort="synchCall" sendEvent="c8d062d9-7f9d-44ea-87c3-aa36c6f44f27" receiveEvent="320a8481-1ac4-44d3-aa90-37df698902f9">
+        <ownedComment xmi:id="a70854da-cf12-47cc-821a-dbecb01b49c2">
+          <body>Duration: 50μs</body>
+        </ownedComment>
+      </message>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="ed89743c-1fff-475d-b330-22cb024b1120" name="msg3_send" covered="63aadc4f-3fbb-4c13-93f8-b97b566f9b98" />
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="89b4e477-ff37-4207-a646-47fc0b8a720d" name="msg3_receive" covered="fcda1ff6-a1b3-497c-b32b-21e0128648f6" />
+      <message xmi:id="389caa40-5ea8-4c79-b87e-ef1ad9f0c68c" name="hipstershop.ProductCatalogService/GetProduct" messageSort="synchCall" sendEvent="ed89743c-1fff-475d-b330-22cb024b1120" receiveEvent="89b4e477-ff37-4207-a646-47fc0b8a720d">
+        <ownedComment xmi:id="e62eb753-aecb-4f0d-8621-c617e5f5199c">
+          <body>Duration: 49μs</body>
+        </ownedComment>
+      </message>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="824a1dda-6224-42d7-92ef-fc01d68960f0" name="msg4_send" covered="63aadc4f-3fbb-4c13-93f8-b97b566f9b98" />
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="391a92f8-7106-49bf-af46-1c437ad8ecea" name="msg4_receive" covered="fcda1ff6-a1b3-497c-b32b-21e0128648f6" />
+      <message xmi:id="2c1a3308-1646-46be-ab36-d588a4276e24" name="hipstershop.ProductCatalogService/GetProduct" messageSort="synchCall" sendEvent="824a1dda-6224-42d7-92ef-fc01d68960f0" receiveEvent="391a92f8-7106-49bf-af46-1c437ad8ecea">
+        <ownedComment xmi:id="c4aeba20-4b64-4446-b12c-04de1ae4f731">
+          <body>Duration: 18μs</body>
+        </ownedComment>
+      </message>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="9328fc22-e493-47b2-9cdd-50ce50ad438f" name="msg5_send" covered="63aadc4f-3fbb-4c13-93f8-b97b566f9b98" />
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="576254ee-59aa-4adc-af8c-d783e53b7241" name="msg5_receive" covered="fcda1ff6-a1b3-497c-b32b-21e0128648f6" />
+      <message xmi:id="516a768b-3d75-4dff-ae60-9634be9783e5" name="hipstershop.ProductCatalogService/GetProduct" messageSort="synchCall" sendEvent="9328fc22-e493-47b2-9cdd-50ce50ad438f" receiveEvent="576254ee-59aa-4adc-af8c-d783e53b7241">
+        <ownedComment xmi:id="ac7d9a98-5a34-4639-b70f-dbafa5c7adb8">
+          <body>Duration: 18μs</body>
+        </ownedComment>
+      </message>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="ca36c51a-3209-4baa-8dd4-87dc9f4fbce8" name="msg6_send" covered="63aadc4f-3fbb-4c13-93f8-b97b566f9b98" />
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="823162a0-f9ef-4486-acfe-d4fd17f8e645" name="msg6_receive" covered="fcda1ff6-a1b3-497c-b32b-21e0128648f6" />
+      <message xmi:id="19a06ec8-33ca-4423-938a-1b8e4c61248a" name="hipstershop.ProductCatalogService/GetProduct" messageSort="synchCall" sendEvent="ca36c51a-3209-4baa-8dd4-87dc9f4fbce8" receiveEvent="823162a0-f9ef-4486-acfe-d4fd17f8e645">
+        <ownedComment xmi:id="234b943b-9ea2-4e0f-98e9-4b025864c469">
+          <body>Duration: 53μs</body>
+        </ownedComment>
+      </message>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="5418508f-2750-41b0-8be6-45ee2a665e06" name="msg7_send" covered="63aadc4f-3fbb-4c13-93f8-b97b566f9b98" />
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="da36f4a5-8fbc-4524-9fd8-35b0975e70f5" name="msg7_receive" covered="fcda1ff6-a1b3-497c-b32b-21e0128648f6" />
+      <message xmi:id="8e8a2b02-9213-4da3-9eba-8edc4b36c236" name="hipstershop.ProductCatalogService/GetProduct" messageSort="synchCall" sendEvent="5418508f-2750-41b0-8be6-45ee2a665e06" receiveEvent="da36f4a5-8fbc-4524-9fd8-35b0975e70f5">
+        <ownedComment xmi:id="b956badc-a85c-43f5-8a2e-a885ebc5205e">
+          <body>Duration: 31μs</body>
+        </ownedComment>
+      </message>
+    </packagedElement>
+  </uml:Model>
+</xmi:XMI>

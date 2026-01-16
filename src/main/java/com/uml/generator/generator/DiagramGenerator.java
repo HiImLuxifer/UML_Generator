@@ -9,12 +9,13 @@ import java.util.List;
 public interface DiagramGenerator {
 
     /**
-     * Generates PlantUML source code from traces.
+     * Generates XMI (XML Metadata Interchange) content from traces.
+     * Conforms to OMG XMI 2.5.1 and UML 2.5.1 specifications.
      * 
      * @param traces list of traces to analyze
-     * @return PlantUML source code
+     * @return XMI XML content as string
      */
-    String generatePlantUML(List<Trace> traces);
+    String generateXmi(List<Trace> traces);
 
     /**
      * Gets the diagram type name.

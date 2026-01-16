@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmi:version="2.5.1">
+  <uml:Model name="trace_Component" xmi:id="_6aab0eb3e2d24b08833d8f3810182071">
+    <packagedElement name="recommendationservice" visibility="public" xmi:id="_7291f93f84c64cfda040577477de7809" xmi:type="uml:Component" xmlns="http://www.eclipse.org/uml2/5.0.0/UML">
+      <ownedComment annotatedElement="_7291f93f84c64cfda040577477de7809" xmi:id="_b9cfea15370d45faaa53414f8dae1406">
+        <body>Stereotype: Microservice</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement name="currencyservice" visibility="public" xmi:id="_0ba79f3746b04c17857e74b1f55cf5fb" xmi:type="uml:Component" xmlns="http://www.eclipse.org/uml2/5.0.0/UML">
+      <ownedComment annotatedElement="_0ba79f3746b04c17857e74b1f55cf5fb" xmi:id="_2500973494c14defa0768338fcb8fc4f">
+        <body>Stereotype: Microservice</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement name="productcatalogservice" visibility="public" xmi:id="_3a7775a7a64942c98284a70fc0d1eabe" xmi:type="uml:Component" xmlns="http://www.eclipse.org/uml2/5.0.0/UML">
+      <ownedComment annotatedElement="_3a7775a7a64942c98284a70fc0d1eabe" xmi:id="_ccbfb1fd78784a99b6f0a57c25abdae0">
+        <body>Stereotype: Microservice</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement name="frontend" visibility="public" xmi:id="_c1c4e518a10744d681ff80df28d23a2c" xmi:type="uml:Component" xmlns="http://www.eclipse.org/uml2/5.0.0/UML">
+      <ownedComment annotatedElement="_c1c4e518a10744d681ff80df28d23a2c" xmi:id="_24539435ee004cc9b0709f34b543fe82">
+        <body>Stereotype: WebUI</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement name="productcatalogserviceAPI" xmi:id="_8cc8bab58fe24f1699265fdcf3153846" xmi:type="uml:Interface" xmlns="http://www.eclipse.org/uml2/5.0.0/UML">
+      <ownedOperation name="ProductCatalogService/ListProducts" visibility="public" xmi:id="_4f3c137d8be143f8b63f4727da629fcb"/>
+    </packagedElement>
+    <packagedElement client="_7291f93f84c64cfda040577477de7809" name="recommendationservice_uses_productcatalogserviceAPI" supplier="_8cc8bab58fe24f1699265fdcf3153846" xmi:id="_820393a7609e44ad947acfd020597fb7" xmi:type="uml:Dependency" xmlns="http://www.eclipse.org/uml2/5.0.0/UML"/>
+    <packagedElement contract="_8cc8bab58fe24f1699265fdcf3153846" implementingClassifier="_3a7775a7a64942c98284a70fc0d1eabe" name="productcatalogservice_provides_productcatalogserviceAPI" xmi:id="_e1b8eeb421f045a0956a7ffa3ba68dd4" xmi:type="uml:InterfaceRealization" xmlns="http://www.eclipse.org/uml2/5.0.0/UML"/>
+    <packagedElement name="recommendationserviceAPI" xmi:id="_a55b70b37f9e42f6817bec02b27dffc7" xmi:type="uml:Interface" xmlns="http://www.eclipse.org/uml2/5.0.0/UML">
+      <ownedOperation name="RecommendationService/ListRecommendations" visibility="public" xmi:id="_0cc465cde1264ccb8eba7d2ad4e8b1ad"/>
+    </packagedElement>
+    <packagedElement client="_c1c4e518a10744d681ff80df28d23a2c" name="frontend_uses_recommendationserviceAPI" supplier="_a55b70b37f9e42f6817bec02b27dffc7" xmi:id="_f969b75bfae2477e8e88647b118dcc6d" xmi:type="uml:Dependency" xmlns="http://www.eclipse.org/uml2/5.0.0/UML"/>
+    <packagedElement contract="_a55b70b37f9e42f6817bec02b27dffc7" implementingClassifier="_7291f93f84c64cfda040577477de7809" name="recommendationservice_provides_recommendationserviceAPI" xmi:id="_d12e8815a93a4e74b20f065081651613" xmi:type="uml:InterfaceRealization" xmlns="http://www.eclipse.org/uml2/5.0.0/UML"/>
+    <packagedElement client="_c1c4e518a10744d681ff80df28d23a2c" name="frontend_uses_productcatalogserviceAPI" supplier="_8cc8bab58fe24f1699265fdcf3153846" xmi:id="_f49948e64eef44aead53cc97124ed884" xmi:type="uml:Dependency" xmlns="http://www.eclipse.org/uml2/5.0.0/UML"/>
+    <packagedElement contract="_8cc8bab58fe24f1699265fdcf3153846" implementingClassifier="_3a7775a7a64942c98284a70fc0d1eabe" name="productcatalogservice_provides_productcatalogserviceAPI" xmi:id="_6cfeb8382c7c45f89017365ab614755d" xmi:type="uml:InterfaceRealization" xmlns="http://www.eclipse.org/uml2/5.0.0/UML"/>
+  </uml:Model>
+</xmi:XMI>

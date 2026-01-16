@@ -4,7 +4,7 @@ import com.uml.generator.cli.CommandLineInterface;
 import com.uml.generator.generator.*;
 import com.uml.generator.input.*;
 import com.uml.generator.model.Trace;
-import com.uml.generator.renderer.PlantUmlRenderer;
+import com.uml.generator.renderer.XmiWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * Main application class for Jaeger UML Generator.
- * Orchestrates reading traces, generating diagrams, and rendering to PNG.
+ * Orchestrates reading traces and generating XMI diagrams.
  */
 public class JaegerUmlGenerator {
 
@@ -108,7 +108,6 @@ public class JaegerUmlGenerator {
      */
     private void generateDiagrams(CommandLineInterface cli, List<Trace> traces) throws Exception {
         String diagramType = cli.getDiagramType().toLowerCase();
-        PlantUmlRenderer renderer = new PlantUmlRenderer();
 
         // Generate all requested diagram types for each trace individually
         for (int i = 0; i < traces.size(); i++) {
@@ -130,18 +129,15 @@ public class JaegerUmlGenerator {
             if (diagramType.equals("all") || diagramType.equals("sequence")) {
                 logger.info("Generating sequence diagram for {}", traceName);
                 SequenceDiagramGenerator sequenceGenerator = new SequenceDiagramGenerator();
-                String plantUmlSource = sequenceGenerator.generatePlantUMLForTrace(trace, i);
+                String xmiContent = sequenceGenerator.generateXmiForTrace(trace, i);
 
-                if (plantUmlSource != null && !plantUmlSource.trim().isEmpty()) {
+                if (xmiContent != null && !xmiContent.trim().isEmpty()) {
                     String filename = "sequence-" + traceName;
-                    File pumlFile = new File(cli.getOutputDir(), filename + ".puml");
-                    savePlantUmlSource(plantUmlSource, pumlFile);
-
-                    File pngFile = new File(cli.getOutputDir(), filename + ".png");
-                    renderer.renderToPng(plantUmlSource, pngFile);
-                    System.out.println("  Generated: " + pngFile.getName());
+                    File xmiFile = new File(cli.getOutputDir(), filename + ".xmi");
+                    saveXmiSource(xmiContent, xmiFile);
+                    System.out.println("  Generated: " + xmiFile.getName());
                 } else {
-                    logger.warn("No PlantUML source generated for sequence diagram: {}", traceName);
+                    logger.warn("No XMI content generated for sequence diagram: {}", traceName);
                 }
             }
 
@@ -149,18 +145,15 @@ public class JaegerUmlGenerator {
             if (diagramType.equals("all") || diagramType.equals("component")) {
                 logger.info("Generating component diagram for {}", traceName);
                 ComponentDiagramGenerator componentGenerator = new ComponentDiagramGenerator();
-                String plantUmlSource = componentGenerator.generatePlantUML(singleTraceList);
+                String xmiContent = componentGenerator.generateXmi(singleTraceList);
 
-                if (plantUmlSource != null && !plantUmlSource.trim().isEmpty()) {
+                if (xmiContent != null && !xmiContent.trim().isEmpty()) {
                     String filename = "component-" + traceName;
-                    File pumlFile = new File(cli.getOutputDir(), filename + ".puml");
-                    savePlantUmlSource(plantUmlSource, pumlFile);
-
-                    File pngFile = new File(cli.getOutputDir(), filename + ".png");
-                    renderer.renderToPng(plantUmlSource, pngFile);
-                    System.out.println("  Generated: " + pngFile.getName());
+                    File xmiFile = new File(cli.getOutputDir(), filename + ".xmi");
+                    saveXmiSource(xmiContent, xmiFile);
+                    System.out.println("  Generated: " + xmiFile.getName());
                 } else {
-                    logger.warn("No PlantUML source generated for component diagram: {}", traceName);
+                    logger.warn("No XMI content generated for component diagram: {}", traceName);
                 }
             }
 
@@ -168,18 +161,15 @@ public class JaegerUmlGenerator {
             if (diagramType.equals("all") || diagramType.equals("deployment")) {
                 logger.info("Generating deployment diagram for {}", traceName);
                 DeploymentDiagramGenerator deploymentGenerator = new DeploymentDiagramGenerator();
-                String plantUmlSource = deploymentGenerator.generatePlantUML(singleTraceList);
+                String xmiContent = deploymentGenerator.generateXmi(singleTraceList);
 
-                if (plantUmlSource != null && !plantUmlSource.trim().isEmpty()) {
+                if (xmiContent != null && !xmiContent.trim().isEmpty()) {
                     String filename = "deployment-" + traceName;
-                    File pumlFile = new File(cli.getOutputDir(), filename + ".puml");
-                    savePlantUmlSource(plantUmlSource, pumlFile);
-
-                    File pngFile = new File(cli.getOutputDir(), filename + ".png");
-                    renderer.renderToPng(plantUmlSource, pngFile);
-                    System.out.println("  Generated: " + pngFile.getName());
+                    File xmiFile = new File(cli.getOutputDir(), filename + ".xmi");
+                    saveXmiSource(xmiContent, xmiFile);
+                    System.out.println("  Generated: " + xmiFile.getName());
                 } else {
-                    logger.warn("No PlantUML source generated for deployment diagram: {}", traceName);
+                    logger.warn("No XMI content generated for deployment diagram: {}", traceName);
                 }
             }
         }
@@ -214,12 +204,12 @@ public class JaegerUmlGenerator {
     }
 
     /**
-     * Saves PlantUML source code to a file.
+     * Saves XMI content to a file.
      */
-    private void savePlantUmlSource(String source, File file) throws Exception {
+    private void saveXmiSource(String xmiContent, File file) throws Exception {
         try (java.io.FileWriter writer = new java.io.FileWriter(file)) {
-            writer.write(source);
+            writer.write(xmiContent);
         }
-        logger.info("Saved PlantUML source: {}", file.getName());
+        logger.info("Saved XMI file: {}", file.getName());
     }
 }

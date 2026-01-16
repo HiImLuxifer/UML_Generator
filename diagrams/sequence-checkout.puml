@@ -1,11 +1,56 @@
 @startuml
-title Sequence Diagram - Trace 4
-autonumber
+'https://plantuml.com/sequence-diagram
 
-participant "checkoutservice" as checkoutservice
-participant "currencyservice" as currencyservice
+skinparam sequenceArrowThickness 2
+skinparam roundcorner 10
+skinparam maxMessageSize 200
+skinparam sequenceParticipant underline
+
+skinparam sequence {
+  ArrowColor DeepSkyBlue
+  ActorBorderColor DeepSkyBlue
+  LifeLineBorderColor blue
+  LifeLineBackgroundColor #A9DCDF
+  ParticipantBorderColor DeepSkyBlue
+  ParticipantBackgroundColor DodgerBlue
+  ParticipantFontName Impact
+  ParticipantFontSize 17
+  ParticipantFontColor #A9DCDF
+  ActorBackgroundColor aqua
+  ActorFontColor DeepSkyBlue
+  ActorFontSize 17
+  ActorFontName Aapex
+  BoxBorderColor GreenYellow
+  BoxFontSize 12
+}
+
+title Sequence Diagram - Traccia checkout
+
+header
+  <font color=red>UML Generator</font>
+  Jaeger Trace Analysis
+endheader
+
+autonumber "<b>[0]"
+
+participant "checkoutservice" as checkoutservice <<Backend>>
+participant "currencyservice" as currencyservice <<Backend>>
 
 [-> checkoutservice: CurrencyService/Convert
 [-> currencyservice: CurrencyService/Convert
+
+legend right
+  |= Stereotype |= Description |
+  | <<Frontend>> | User Interface/Web Service |
+  | <<Backend>> | Backend Service/API |
+  | <<Database>> | Database Service |
+  | <<Cache>> | Caching Service |
+  | [xN] | Operation repeated N times |
+endlegend
+
+footer
+  Generated: 2025-12-16 13:35:34 | Services: 2 | Interactions: 2
+  Trace ID: db16902eff3156f3
+endfooter
 
 @enduml

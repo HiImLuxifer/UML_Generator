@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmi:version="2.5.1">
+  <uml:Model xmi:id="21543f1a-8749-4ba7-b009-8f720c459e49" name="traccia_frontend2_Component">
+    <packagedElement xmi:type="uml:Package" xmi:id="a490d14e-42c5-4dfe-ab1a-6d4a3bfbc765" name="Presentation">
+      <packagedElement xmi:type="uml:Component" xmi:id="005e5ef3-4d61-42da-a589-4594464499f1" name="frontend" visibility="public">
+        <ownedComment xmi:id="3b8f4c4e-9ed0-451b-abfc-6ef805d94033">
+          <body>«WebUI»</body>
+        </ownedComment>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="7c870ed1-2e0d-4716-88c8-5b7484448fd0" name="Services">
+      <packagedElement xmi:type="uml:Component" xmi:id="c1d8cf5d-6d98-4e44-a14e-6bd60ee69690" name="recommendationservice" visibility="public">
+        <ownedComment xmi:id="f0b18d54-2970-4210-85e2-c77d17e24f85">
+          <body>«Microservice»</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="6a639381-72b8-4a2c-b726-8933bb48f1e3" name="productcatalogservice" visibility="public">
+        <ownedComment xmi:id="a8b6fc35-17ef-485c-bc4c-54a39d6bbbe0">
+          <body>«Microservice»</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="758b6f7f-253a-461d-84b2-2c4af2c67468" name="currencyservice" visibility="public">
+        <ownedComment xmi:id="c7193218-d68b-4705-9805-a79268a2a8f2">
+          <body>«Microservice»</body>
+        </ownedComment>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="15e40d37-aa85-4fe5-b3e9-b49c8ac92cbc" name="Interfaces">
+      <packagedElement xmi:type="uml:Interface" xmi:id="f6420a41-2356-492e-bb7d-99f0bc3857cc" name="IRecommendation">
+        <ownedOperation xmi:id="91ebe30d-b7cf-4f5b-b763-174340bcd666" name="/hipstershop.RecommendationService/ListRecommendations" visibility="public" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="4ef3eadb-24b0-487d-91e9-890369d5e2b1" name="IProductcatalog">
+        <ownedOperation xmi:id="58013533-ad32-46e9-87f5-565a52a8e129" name="hipstershop.ProductCatalogService/GetProduct" visibility="public" />
+        <ownedOperation xmi:id="1ff5321d-429f-44fb-8517-308ababe2209" name="hipstershop.ProductCatalogService/ListProducts" visibility="public" />
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="8a1ad729-e050-479c-9fa1-33d0849ae8b7" name="Relationships">
+      <packagedElement xmi:type="uml:Usage" xmi:id="36ac3803-f473-4ae2-82cb-17b852769648" name="frontend_uses_productcatalogservice">
+        <client xmi:idref="005e5ef3-4d61-42da-a589-4594464499f1" />
+        <supplier xmi:idref="4ef3eadb-24b0-487d-91e9-890369d5e2b1" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="070ec3a4-7288-4966-b9ef-e3b7e9bb6d0b" name="productcatalogservice_provides_Iproductcatalogservice">
+        <client xmi:idref="6a639381-72b8-4a2c-b726-8933bb48f1e3" />
+        <supplier xmi:idref="4ef3eadb-24b0-487d-91e9-890369d5e2b1" />
+        <contract xmi:idref="4ef3eadb-24b0-487d-91e9-890369d5e2b1" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="881f5304-7fd7-4295-8ad4-ed21700320ad" name="frontend_uses_recommendationservice">
+        <client xmi:idref="005e5ef3-4d61-42da-a589-4594464499f1" />
+        <supplier xmi:idref="f6420a41-2356-492e-bb7d-99f0bc3857cc" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="8525cf98-c36d-4b8a-94e3-56b65892261c" name="recommendationservice_provides_Irecommendationservice">
+        <client xmi:idref="c1d8cf5d-6d98-4e44-a14e-6bd60ee69690" />
+        <supplier xmi:idref="f6420a41-2356-492e-bb7d-99f0bc3857cc" />
+        <contract xmi:idref="f6420a41-2356-492e-bb7d-99f0bc3857cc" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="c59717ba-b480-4297-8c01-bec8a5542830" name="recommendationservice_uses_productcatalogservice">
+        <client xmi:idref="c1d8cf5d-6d98-4e44-a14e-6bd60ee69690" />
+        <supplier xmi:idref="4ef3eadb-24b0-487d-91e9-890369d5e2b1" />
+      </packagedElement>
+    </packagedElement>
+  </uml:Model>
+</xmi:XMI>

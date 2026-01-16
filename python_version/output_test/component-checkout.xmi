@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmi:version="2.5.1">
+  <uml:Model xmi:id="b0574245-84ad-4e53-b12c-9be3842b2e44" name="traccia_checkout_Component">
+    <packagedElement xmi:type="uml:Package" xmi:id="26dec1eb-a883-4a01-8cfe-4d9e57f5b519" name="Services">
+      <packagedElement xmi:type="uml:Component" xmi:id="bbeea633-241f-441f-a92f-a011f4683ff6" name="checkoutservice" visibility="public">
+        <ownedComment xmi:id="3f013b02-dd5b-46fc-84a5-0bb3344e1a84">
+          <body>«Microservice»</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="86e5d94c-5b9c-4c5a-96cf-542087507169" name="currencyservice" visibility="public">
+        <ownedComment xmi:id="1f027a38-fca5-4817-9c5b-66e8431e7148">
+          <body>«Microservice»</body>
+        </ownedComment>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="a5db83f5-3318-4ba4-82be-85e5ff5962cd" name="Interfaces" />
+    <packagedElement xmi:type="uml:Package" xmi:id="1ba82c2f-ed24-4a12-aede-a5a46c28bb26" name="Relationships" />
+  </uml:Model>
+</xmi:XMI>
