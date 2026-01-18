@@ -62,9 +62,22 @@ class ComponentDiagramGenerator(DiagramGenerator):
         Returns:
             XMI content as string
         """
+        result = self.generate_xmi_with_ids(traces)
+        return result.get('xmi_content', '')
+    
+    def generate_xmi_with_ids(self, traces: List[Trace]) -> Dict[str, any]:
+        """
+        Generate XMI for component diagram and return element IDs for cross-referencing.
+        
+        Args:
+            traces: List of Trace objects
+            
+        Returns:
+            Dictionary with 'xmi_content', 'component_ids', 'operation_ids'
+        """
         if not traces:
             logger.warning("No traces provided for component diagram generation")
-            return ""
+            return {'xmi_content': '', 'component_ids': {}, 'operation_ids': {}}
         
         try:
             aggregator = TraceAggregator(traces)
@@ -87,103 +100,67 @@ class ComponentDiagramGenerator(DiagramGenerator):
             # Organize services into packages by category
             categorized_services = self._categorize_services(services)
             
-            # Track created elements to reference them
+            # Track created elements for cross-referencing
             component_ids: Dict[str, str] = {}
-            interface_ids: Dict[str, str] = {}
-            package_ids: Dict[str, str] = {}
+            operation_ids: Dict[str, Dict[str, str]] = {}  # service -> {operation -> id}
             
-            # Create packages and components
+            # Create packages and components with operations
             for category, category_services in categorized_services.items():
                 if category_services:
                     # Create package for this category
                     package_elem, package_id = self.xmi_writer.create_package(model, category)
-                    package_ids[category] = package_id
                     
                     # Create components inside the package
                     for service in category_services:
                         metadata = service_metadata.get(service, {})
-                        component_id = self._create_component(package_elem, service, metadata)
-                        component_ids[service] = component_id
-            
-            # Create interfaces package
-            interfaces_package, _ = self.xmi_writer.create_package(model, "Interfaces")
-            
-            # Create interfaces for services that provide operations
-            for callee_service in services:
-                # Get operations that this service provides
-                provided_ops = self._get_provided_operations(callee_service, service_calls)
-                
-                if provided_ops:
-                    interface_name = f"I{self._capitalize_service_name(callee_service)}"
-                    
-                    # Create interface with operations (limit to 15 for readability)
-                    ops_list = list(provided_ops)[:15]
-                    clean_ops = [clean_operation_name(op) for op in ops_list]
-                    
-                    interface_elem, interface_id = self.xmi_writer.create_interface(
-                        interfaces_package, interface_name, clean_ops
-                    )
-                    interface_ids[callee_service] = interface_id
-                    
-                    # Add comment if more operations exist
-                    if len(provided_ops) > 15:
-                        self.xmi_writer.add_comment(
-                            interface_elem,
-                            f"+{len(provided_ops) - 15} more operations"
+                        
+                        # Get operations for this service directly from aggregator
+                        service_ops = service_operations.get(service, set())
+                        
+                        # Create component with operations
+                        component_id, ops_ids = self._create_component_with_operations(
+                            package_elem, service, metadata, service_ops
                         )
+                        component_ids[service] = component_id
+                        operation_ids[service] = ops_ids
             
-            # Create relationships package
-            relationships_package, _ = self.xmi_writer.create_package(model, "Relationships")
+            # Create simple dependencies between components (no interfaces)
+            dependencies_package, _ = self.xmi_writer.create_package(model, "Dependencies")
             
-            # Create Usage dependencies and InterfaceRealizations
-            total_usages = 0
-            total_realizations = 0
-            
+            created_deps: Set[str] = set()
             for caller_service, callee_map in service_calls.items():
                 for callee_service, operations in callee_map.items():
                     caller_id = component_ids.get(caller_service)
                     callee_id = component_ids.get(callee_service)
-                    interface_id = interface_ids.get(callee_service)
                     
-                    if caller_id and interface_id:
-                        # Create Usage dependency (caller uses interface)
-                        usage_name = f"{caller_service}_uses_{callee_service}"
-                        self.xmi_writer.create_usage(
-                            relationships_package,
-                            usage_name,
-                            caller_id,
-                            interface_id
-                        )
-                        total_usages += 1
-                    
-                    # Create InterfaceRealization (callee provides interface)
-                    if callee_id and interface_id:
-                        realization_name = f"{callee_service}_provides_I{callee_service}"
-                        # Only create if not already created
-                        if callee_service not in self._created_realizations:
-                            self.xmi_writer.create_interface_realization(
-                                relationships_package,
-                                realization_name,
-                                callee_id,
-                                interface_id
+                    if caller_id and callee_id:
+                        dep_key = f"{caller_service}_to_{callee_service}"
+                        if dep_key not in created_deps:
+                            # Create simple Dependency
+                            self.xmi_writer.create_usage(
+                                dependencies_package,
+                                dep_key,
+                                caller_id,
+                                callee_id
                             )
-                            self._created_realizations.add(callee_service)
-                            total_realizations += 1
+                            created_deps.add(dep_key)
             
-            logger.info(f"Generated component diagram XMI with {len(services)} service(s), "
-                       f"{len(interface_ids)} interface(s), {total_usages} usage(s), "
-                       f"and {total_realizations} realization(s)")
+            logger.info(f"Generated component diagram XMI with {len(services)} component(s) "
+                       f"and {sum(len(ops) for ops in operation_ids.values())} operation(s)")
             
-            return self.xmi_writer.document_to_string(root)
+            return {
+                'xmi_content': self.xmi_writer.document_to_string(root),
+                'component_ids': component_ids,
+                'operation_ids': operation_ids,
+                'model': model,
+                'root': root
+            }
             
         except Exception as e:
             logger.error(f"Failed to generate component diagram XMI: {e}")
             import traceback
             traceback.print_exc()
-            return ""
-    
-    # Track created realizations to avoid duplicates
-    _created_realizations: Set[str] = set()
+            return {'xmi_content': '', 'component_ids': {}, 'operation_ids': {}}
     
     def _categorize_services(self, services: Set[str]) -> Dict[str, Set[str]]:
         """
@@ -217,23 +194,25 @@ class ComponentDiagramGenerator(DiagramGenerator):
         # Remove empty categories
         return {k: v for k, v in categories.items() if v}
     
-    def _create_component(self, parent: ET.Element, service_name: str, 
-                         metadata: Dict[str, any]) -> str:
+    def _create_component_with_operations(self, parent: ET.Element, service_name: str, 
+                                          metadata: Dict[str, any], 
+                                          operations: Set[str]) -> tuple:
         """
-        Create a UML Component element.
+        Create a UML Component element with ownedOperation elements.
         
         Args:
             parent: Parent element (package)
             service_name: Service name
             metadata: Service metadata
+            operations: Set of operation names
             
         Returns:
-            Component ID
+            Tuple of (component_id, operation_ids_dict)
         """
         # Detect stereotype
         stereotype = self._detect_service_stereotype(service_name, metadata)
         
-        # Create component using the new method
+        # Create component
         component, component_id = self.xmi_writer.create_packaged_element(
             parent, "Component", service_name, visibility="public"
         )
@@ -242,7 +221,28 @@ class ComponentDiagramGenerator(DiagramGenerator):
         if stereotype:
             self.xmi_writer.add_comment(component, f"«{stereotype}»")
         
-        return component_id
+        # Add operations directly to component
+        operation_ids: Dict[str, str] = {}
+        ops_list = list(operations)[:20]  # Limit to 20 for readability
+        
+        for op_name in ops_list:
+            clean_op = clean_operation_name(op_name)
+            op_elem, op_id = self.xmi_writer.create_owned_element(
+                component, "ownedOperation",
+                name=clean_op, visibility="public"
+            )
+            # Set xmi:type for operation
+            op_elem.set(f"{{{self.xmi_writer.XMI_NAMESPACE}}}type", "uml:Operation")
+            operation_ids[clean_op] = op_id
+        
+        # Add comment if more operations exist
+        if len(operations) > 20:
+            self.xmi_writer.add_comment(
+                component,
+                f"+{len(operations) - 20} more operations"
+            )
+        
+        return component_id, operation_ids
     
     def _get_provided_operations(self, service_name: str, 
                                  service_calls: Dict[str, Dict[str, Set[str]]]) -> Set[str]:

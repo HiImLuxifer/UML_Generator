@@ -13,7 +13,8 @@ from .input import JsonFileReader, JaegerApiClient, TraceReader
 from .generators import (
     SequenceDiagramGenerator,
     ComponentDiagramGenerator,
-    DeploymentDiagramGenerator
+    DeploymentDiagramGenerator,
+    UnifiedXmiGenerator
 )
 from .cli import CommandLine
 from .utils import clean_trace_name
@@ -92,7 +93,7 @@ class JaegerUmlGenerator:
         output_dir = self.cli.get_output_dir()
         xmi_format = self.cli.get_xmi_format()
         
-        # Generate all requested diagram types for each trace individually
+        # Generate all diagrams in a unified XMI file for each trace
         for i, trace in enumerate(traces):
             # Use sourceName if available, otherwise fall back to index
             trace_name = trace.source_name if trace.source_name else f"trace-{i + 1}"
@@ -103,47 +104,53 @@ class JaegerUmlGenerator:
             # Create a list with single trace for individual diagram generation
             single_trace_list = [trace]
             
-            # Generate sequence diagram for this trace
-            if diagram_type in ['all', 'sequence']:
-                logger.info(f"Generating sequence diagram for {trace_name}")
-                generator = SequenceDiagramGenerator(xmi_format)
-                xmi_content = generator.generate_xmi_for_trace(trace, i)
+            # Generate unified XMI (all diagrams in one file)
+            if diagram_type == 'all':
+                logger.info(f"Generating unified XMI for {trace_name}")
+                generator = UnifiedXmiGenerator(xmi_format)
+                xmi_content = generator.generate(single_trace_list, trace_name)
                 
                 if xmi_content and xmi_content.strip():
-                    filename = f"sequence-{trace_name}.xmi"
+                    filename = f"{trace_name}.xmi"
                     xmi_file = output_dir / filename
                     self._save_xmi(xmi_content, xmi_file)
                     print(f"  Generated: {filename}")
                 else:
-                    logger.warning(f"No XMI content generated for sequence diagram: {trace_name}")
-            
-            # Generate component diagram for this trace
-            if diagram_type in ['all', 'component']:
-                logger.info(f"Generating component diagram for {trace_name}")
-                generator = ComponentDiagramGenerator(xmi_format)
-                xmi_content = generator.generate_xmi(single_trace_list)
+                    logger.warning(f"No XMI content generated for unified diagram: {trace_name}")
+            else:
+                # Generate individual diagram types for backward compatibility
+                if diagram_type == 'sequence':
+                    logger.info(f"Generating sequence diagram for {trace_name}")
+                    generator = SequenceDiagramGenerator(xmi_format)
+                    xmi_content = generator.generate_xmi_for_trace(trace, i)
+                    
+                    if xmi_content and xmi_content.strip():
+                        filename = f"sequence-{trace_name}.xmi"
+                        xmi_file = output_dir / filename
+                        self._save_xmi(xmi_content, xmi_file)
+                        print(f"  Generated: {filename}")
                 
-                if xmi_content and xmi_content.strip():
-                    filename = f"component-{trace_name}.xmi"
-                    xmi_file = output_dir / filename
-                    self._save_xmi(xmi_content, xmi_file)
-                    print(f"  Generated: {filename}")
-                else:
-                    logger.warning(f"No XMI content generated for component diagram: {trace_name}")
-            
-            # Generate deployment diagram for this trace
-            if diagram_type in ['all', 'deployment']:
-                logger.info(f"Generating deployment diagram for {trace_name}")
-                generator = DeploymentDiagramGenerator(xmi_format)
-                xmi_content = generator.generate_xmi(single_trace_list)
+                elif diagram_type == 'component':
+                    logger.info(f"Generating component diagram for {trace_name}")
+                    generator = ComponentDiagramGenerator(xmi_format)
+                    xmi_content = generator.generate_xmi(single_trace_list)
+                    
+                    if xmi_content and xmi_content.strip():
+                        filename = f"component-{trace_name}.xmi"
+                        xmi_file = output_dir / filename
+                        self._save_xmi(xmi_content, xmi_file)
+                        print(f"  Generated: {filename}")
                 
-                if xmi_content and xmi_content.strip():
-                    filename = f"deployment-{trace_name}.xmi"
-                    xmi_file = output_dir / filename
-                    self._save_xmi(xmi_content, xmi_file)
-                    print(f"  Generated: {filename}")
-                else:
-                    logger.warning(f"No XMI content generated for deployment diagram: {trace_name}")
+                elif diagram_type == 'deployment':
+                    logger.info(f"Generating deployment diagram for {trace_name}")
+                    generator = DeploymentDiagramGenerator(xmi_format)
+                    xmi_content = generator.generate_xmi(single_trace_list)
+                    
+                    if xmi_content and xmi_content.strip():
+                        filename = f"deployment-{trace_name}.xmi"
+                        xmi_file = output_dir / filename
+                        self._save_xmi(xmi_content, xmi_file)
+                        print(f"  Generated: {filename}")
     
     def _save_xmi(self, xmi_content: str, file_path: Path):
         """
