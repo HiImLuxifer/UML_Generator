@@ -92,8 +92,28 @@ class JaegerUmlGenerator:
         diagram_type = self.cli.get_diagram_type().lower()
         output_dir = self.cli.get_output_dir()
         xmi_format = self.cli.get_xmi_format()
+        merge_traces = self.cli.is_merge_traces()
+        model_name = self.cli.get_model_name()
         
-        # Generate all diagrams in a unified XMI file for each trace
+        # If --merge-traces is enabled, generate a single unified XMI for all traces
+        if merge_traces and diagram_type == 'all':
+            logger.info(f"Generating unified XMI for {len(traces)} traces with model name: {model_name}")
+            generator = UnifiedXmiGenerator(xmi_format)
+            xmi_content = generator.generate(traces, model_name)
+            
+            if xmi_content and xmi_content.strip():
+                filename = f"{model_name}.xmi"
+                xmi_file = output_dir / filename
+                self._save_xmi(xmi_content, xmi_file)
+                print(f"  Generated unified XMI: {filename}")
+                print(f"    - 1 Component diagram (aggregated from all traces)")
+                print(f"    - 1 Deployment diagram (aggregated from all traces)")
+                print(f"    - {len(traces)} Sequence diagram(s) (one per trace, inside Use Cases)")
+            else:
+                logger.warning(f"No XMI content generated for unified diagram: {model_name}")
+            return
+        
+        # Otherwise, generate one XMI file per trace (original behavior)
         for i, trace in enumerate(traces):
             # Use sourceName if available, otherwise fall back to index
             trace_name = trace.source_name if trace.source_name else f"trace-{i + 1}"

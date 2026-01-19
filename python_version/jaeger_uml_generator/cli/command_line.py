@@ -94,6 +94,21 @@ Examples:
             help='XMI output format: papyrus (Eclipse) or magicdraw (default: papyrus)'
         )
         
+        # Merge traces option
+        parser.add_argument(
+            '--merge-traces',
+            action='store_true',
+            help='Merge all traces into a single unified XMI file (default: one XMI per trace)'
+        )
+        
+        # Model name for merged output
+        parser.add_argument(
+            '--model-name',
+            type=str,
+            default='UnifiedModel',
+            help='Name for the unified model when using --merge-traces (default: UnifiedModel)'
+        )
+        
         # Logging
         parser.add_argument(
             '-v', '--verbose',
@@ -200,3 +215,11 @@ Examples:
     def get_xmi_format(self) -> str:
         """Get XMI output format (papyrus or magicdraw)."""
         return self.args.format if self.args else 'papyrus'
+    
+    def is_merge_traces(self) -> bool:
+        """Check if traces should be merged into a single XMI file."""
+        return self.args.merge_traces if self.args else False
+    
+    def get_model_name(self) -> str:
+        """Get the model name for unified XMI output."""
+        return self.args.model_name if self.args else 'UnifiedModel'
