@@ -6,7 +6,7 @@ from typing import List, Dict, Set
 
 from ..models import Trace
 from ..analyzer import TraceAggregator
-from ..renderer import XmiWriter, XmiFormat
+from ..renderer import XmiWriter, XmiFormat, MarteProfileWriter
 from ..utils import clean_operation_name, extract_base_name
 
 
@@ -21,23 +21,33 @@ class UnifiedXmiGenerator:
     - Sequence diagrams inside Use Cases
     
     All elements are cross-referenced using shared IDs.
+    Includes MARTE profile stereotypes for performance analysis.
     """
     
-    def __init__(self, xmi_format: str = "papyrus"):
+    def __init__(self, xmi_format: str = "papyrus", include_marte: bool = True):
         """
         Initialize unified generator.
         
         Args:
             xmi_format: Output format ('papyrus' or 'magicdraw')
+            include_marte: Whether to include MARTE profile annotations
         """
         format_enum = XmiFormat(xmi_format)
         self.xmi_writer = XmiWriter(format_enum)
+        self.include_marte = include_marte
+        
+        # Initialize MARTE profile writer
+        self.marte_writer = MarteProfileWriter(self.xmi_writer.XMI_NAMESPACE)
         
         # Shared element IDs across all diagrams
         self.component_ids: Dict[str, str] = {}  # service -> component_id
         self.operation_ids: Dict[str, Dict[str, str]] = {}  # service -> {op_name -> op_id}
         self.artifact_ids: Dict[str, str] = {}  # service -> artifact_id
         self.node_ids: Dict[str, str] = {}  # node_name -> node_id
+        
+        # IDs for MARTE stereotype applications
+        self.interaction_ids: Dict[str, str] = {}  # trace_name -> interaction_id
+        self.message_ids: List[tuple] = []  # [(message_id, duration_ms), ...]
     
     def generate(self, traces: List[Trace], model_name: str = "UnifiedModel") -> str:
         """
@@ -57,9 +67,21 @@ class UnifiedXmiGenerator:
         try:
             aggregator = TraceAggregator(traces)
             
+            # Reset IDs for new generation
+            self.component_ids.clear()
+            self.operation_ids.clear()
+            self.artifact_ids.clear()
+            self.node_ids.clear()
+            self.interaction_ids.clear()
+            self.message_ids.clear()
+            
             # Create XMI document
             root = self.xmi_writer.create_xmi_document(model_name)
             model = self.xmi_writer.get_model_element(root)
+            
+            # Add MARTE profile application to model
+            if self.include_marte:
+                self.marte_writer.add_profile_application(model)
             
             # Step 1: Generate Components with operations
             self._generate_components(model, aggregator)
@@ -70,7 +92,15 @@ class UnifiedXmiGenerator:
             # Step 3: Generate Sequences inside Use Cases
             self._generate_sequences(model, traces)
             
+            # Step 4: Apply MARTE stereotypes (after all elements are created)
+            if self.include_marte:
+                self._apply_marte_stereotypes(root)
+            
             logger.info(f"Generated unified XMI with {len(self.component_ids)} components")
+            if self.include_marte:
+                logger.info(f"Applied MARTE stereotypes: {len(self.interaction_ids)} GaAnalysisContext, "
+                           f"{len(self.message_ids)} PaStep, {len(self.node_ids)} GaExecHost, "
+                           f"{len(self.component_ids)} RtUnit")
             
             return self.xmi_writer.document_to_string(root)
             
@@ -202,6 +232,9 @@ class UnifiedXmiGenerator:
             interaction.set(f"{{{self.xmi_writer.XMI_NAMESPACE}}}id", interaction_id)
             interaction.set("name", f"{trace_name}_Interaction")
             
+            # Track interaction ID for MARTE GaAnalysisContext
+            self.interaction_ids[trace_name] = interaction_id
+            
             # Get services for this trace
             services = trace.get_all_service_names()
             
@@ -258,7 +291,8 @@ class UnifiedXmiGenerator:
                             # Create message
                             clean_op = clean_operation_name(span.operation_name)
                             message = ET.SubElement(interaction, "message")
-                            message.set(f"{{{self.xmi_writer.XMI_NAMESPACE}}}id", self.xmi_writer.generate_uuid())
+                            message_id = self.xmi_writer.generate_uuid()
+                            message.set(f"{{{self.xmi_writer.XMI_NAMESPACE}}}id", message_id)
                             message.set("name", clean_op)
                             message.set("messageSort", "synchCall")
                             message.set("sendEvent", send_id)
@@ -269,9 +303,56 @@ class UnifiedXmiGenerator:
                             if clean_op in target_ops:
                                 message.set("signature", target_ops[clean_op])
                             
+                            # Track message ID and duration for MARTE PaStep
+                            # Duration is in microseconds, convert to milliseconds
+                            duration_ms = span.duration / 1000.0
+                            is_async = span.get_tag('span.kind') == 'producer'
+                            self.message_ids.append((message_id, duration_ms, is_async))
+                            
                             msg_counter += 1
         
         logger.info(f"Generated {len(traces)} sequence(s) inside Use Cases")
+    
+    def _apply_marte_stereotypes(self, root: ET.Element):
+        """
+        Apply MARTE stereotypes to all collected elements.
+        
+        This method adds stereotype applications at the XMI root level,
+        after all UML elements have been created.
+        """
+        # Apply <<RtUnit>> to all components
+        for service, component_id in self.component_ids.items():
+            self.marte_writer.apply_rt_unit(
+                root, 
+                component_id,
+                is_active=True
+            )
+        
+        # Apply <<GaExecHost>> to all nodes
+        for node_name, node_id in self.node_ids.items():
+            self.marte_writer.apply_ga_exec_host(
+                root,
+                node_id,
+                speed_factor=1.0
+            )
+        
+        # Apply <<GaAnalysisContext>> to all interactions
+        for trace_name, interaction_id in self.interaction_ids.items():
+            self.marte_writer.apply_ga_analysis_context(
+                root,
+                interaction_id,
+                context_params={'isSingleMode': True}
+            )
+        
+        # Apply <<PaStep>> to all messages with timing
+        for message_id, duration_ms, is_async in self.message_ids:
+            self.marte_writer.apply_pa_step(
+                root,
+                message_id,
+                host_demand_ms=duration_ms,
+                prob=1.0,
+                no_sync=is_async
+            )
     
     def _extract_node(self, metadata: Dict[str, any]) -> str:
         """Extract node name from service metadata."""

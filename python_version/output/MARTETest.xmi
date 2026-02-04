@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmlns:MARTE_GQAM="http://www.omg.org/spec/MARTE/1.2/GQAM" xmlns:MARTE_GRM="http://www.omg.org/spec/MARTE/1.2/GRM" xmlns:MARTE_PAM="http://www.omg.org/spec/MARTE/1.2/PAM" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmi:version="2.5.1">
+  <uml:Model xmi:id="bf3f23a6-3515-464b-b51e-7750580ef39b" name="MARTETest">
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_marte_6b239c09-e762-4fe7-95a4-b7147eb7b91a">
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://MARTE_PROFILE/MARTE.profile.uml#_ar8OsAPMEdyuUvV5MHMtrQ" />
+    </profileApplication>
+    <packagedElement xmi:type="uml:Package" xmi:id="4de16de4-4b75-4442-bd71-64c515e68453" name="Components">
+      <packagedElement xmi:type="uml:Component" xmi:id="5d3676d6-213e-444d-863a-49db767f42e1" name="checkoutservice" visibility="public">
+        <ownedOperation xmi:id="aa892a6e-f431-4711-b76b-fb1da0a4000a" name="hipstershop.CartService/EmptyCart" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="6f11e95a-a903-4523-9332-852e6623f0f3" name="hipstershop.CartService/GetCart" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="1e70e8db-04fc-40d5-9479-e311a450ee9d" name="hipstershop.CheckoutService/PlaceOrder" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="e0ab5851-be7f-437d-9289-c8485767f229" name="hipstershop.CurrencyService/Convert" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="d918fd13-3384-4234-9de6-912ace3ff5ad" name="hipstershop.EmailService/SendOrderConfirmation" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="c784ccf6-da13-4806-8eaa-57c4855eda64" name="hipstershop.PaymentService/Charge" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="70c1bff2-e070-41fa-b9a4-f88107bfdaac" name="hipstershop.ProductCatalogService/GetProduct" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="38c45643-2e61-4737-92e0-ddf6fecb0ce1" name="hipstershop.ShippingService/GetQuote" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="1696aeb4-a4a3-44a4-8d7f-7263189ba139" name="hipstershop.ShippingService/ShipOrder" visibility="public" xmi:type="uml:Operation" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="0607f726-ca3d-4b6b-86a0-55322a95ff57" name="currencyservice" visibility="public">
+        <ownedOperation xmi:id="f9b26daa-7bad-48e9-88e0-38c2825ba558" name="grpc.hipstershop.CurrencyService/Convert" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="a0e89d17-bcfe-4581-bab1-e33250f32ec6" name="grpc.hipstershop.CurrencyService/GetSupportedCurrencies" visibility="public" xmi:type="uml:Operation" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="a095378d-05dc-479a-9b30-e906dc008ada" name="emailservice" visibility="public">
+        <ownedOperation xmi:id="424c27e8-a0cf-4297-8cab-c95ba9630169" name="/hipstershop.EmailService/SendOrderConfirmation" visibility="public" xmi:type="uml:Operation" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="13884c20-bf28-40fe-b571-60a94a1b2278" name="frontend" visibility="public">
+        <ownedOperation xmi:id="60eb0ed0-0eaf-4e8f-a340-62367d664567" name="frontend" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="9c0a224d-e3ed-44d2-9c62-cb9e98626fe9" name="hipstershop.AdService/GetAds" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="8ef9ab6b-88b9-48ec-bcaa-33ae49608ab7" name="hipstershop.CartService/GetCart" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="9e69f930-6d44-4f00-9987-93bcefcb55f6" name="hipstershop.CheckoutService/PlaceOrder" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="10b1ab74-667a-4475-aac3-e1167b410994" name="hipstershop.CurrencyService/Convert" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="9300a6df-9ef0-4674-be35-6dc3b14fa397" name="hipstershop.CurrencyService/GetSupportedCurrencies" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="ddd8cbf7-de1e-4686-8c58-acdc1a9a4672" name="hipstershop.ProductCatalogService/GetProduct" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="19296a0f-c264-4b12-bfed-41bb36edf011" name="hipstershop.ProductCatalogService/ListProducts" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="037edfe7-0d63-4972-92b0-db851d7ffc45" name="hipstershop.RecommendationService/ListRecommendations" visibility="public" xmi:type="uml:Operation" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="5160c740-9085-4f42-a2cd-3c172bf1bd79" name="paymentservice" visibility="public">
+        <ownedOperation xmi:id="48b42e73-b0ad-4805-a51f-66671e730c3b" name="grpc.hipstershop.PaymentService/Charge" visibility="public" xmi:type="uml:Operation" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="c0c4c261-2e27-4194-894e-dfd528ea57ba" name="productcatalogservice" visibility="public">
+        <ownedOperation xmi:id="3c47b3b0-af13-425a-bd55-e1feafc59e9e" name="hipstershop.ProductCatalogService/GetProduct" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="10e3a8b6-9897-4c99-9c38-aa44807d7ce9" name="hipstershop.ProductCatalogService/ListProducts" visibility="public" xmi:type="uml:Operation" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="06673de1-2a41-46cd-b005-46b355f82a34" name="recommendationservice" visibility="public">
+        <ownedOperation xmi:id="1c88097e-a897-403a-8fa2-6f8d695a04d4" name="/hipstershop.ProductCatalogService/ListProducts" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="97ebe13c-9c84-435b-92f1-9e1b3971bfee" name="/hipstershop.RecommendationService/ListRecommendations" visibility="public" xmi:type="uml:Operation" />
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="4269d41f-06cd-48c2-8e60-c1901924d2e2" name="Dependencies">
+      <packagedElement xmi:type="uml:Usage" xmi:id="be0a79a9-9e1a-41d4-92f5-2caf18bf54f1" name="frontend_to_productcatalogservice">
+        <client xmi:idref="13884c20-bf28-40fe-b571-60a94a1b2278" />
+        <supplier xmi:idref="c0c4c261-2e27-4194-894e-dfd528ea57ba" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="e59b86a0-55d7-4308-b568-954e7a8c5109" name="frontend_to_recommendationservice">
+        <client xmi:idref="13884c20-bf28-40fe-b571-60a94a1b2278" />
+        <supplier xmi:idref="06673de1-2a41-46cd-b005-46b355f82a34" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="e0799d30-bd20-4d41-a56b-76936fa28a71" name="frontend_to_checkoutservice">
+        <client xmi:idref="13884c20-bf28-40fe-b571-60a94a1b2278" />
+        <supplier xmi:idref="5d3676d6-213e-444d-863a-49db767f42e1" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="5715c45b-588e-4ba6-93a7-a912e4f4b4b7" name="recommendationservice_to_productcatalogservice">
+        <client xmi:idref="06673de1-2a41-46cd-b005-46b355f82a34" />
+        <supplier xmi:idref="c0c4c261-2e27-4194-894e-dfd528ea57ba" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="02fb4043-a1de-4fb0-a242-d0c31234392a" name="checkoutservice_to_productcatalogservice">
+        <client xmi:idref="5d3676d6-213e-444d-863a-49db767f42e1" />
+        <supplier xmi:idref="c0c4c261-2e27-4194-894e-dfd528ea57ba" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="dd470b21-4f45-4b07-b447-3166f79db142" name="checkoutservice_to_emailservice">
+        <client xmi:idref="5d3676d6-213e-444d-863a-49db767f42e1" />
+        <supplier xmi:idref="a095378d-05dc-479a-9b30-e906dc008ada" />
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="1f25d721-6de0-48c0-aecb-1f08071eb026" name="Deployment">
+      <packagedElement xmi:type="uml:Node" xmi:id="52114848-9ccf-4d3c-b535-c00dc1ea9a21" name="Node-476" />
+      <packagedElement xmi:type="uml:Node" xmi:id="1619f8ed-845d-486e-a45b-c3b67fd0941e" name="Node-8955" />
+      <packagedElement xmi:type="uml:Node" xmi:id="e26f2d8e-f8a8-402d-a6a1-b347c6c156ac" name="currencyservice" />
+      <packagedElement xmi:type="uml:Node" xmi:id="bd7bc024-83cd-4fa5-b762-59eb56dea97c" name="paymentservice" />
+      <packagedElement xmi:type="uml:Artifact" xmi:id="4d08ff15-acbd-4f2d-9db9-efedaf1b0a9e" name="checkoutservice_artifact">
+        <manifestation xmi:type="uml:Manifestation" xmi:id="af38a027-0e95-462b-8439-3c220706978f" name="manifest_checkoutservice" supplier="5d3676d6-213e-444d-863a-49db767f42e1" client="4d08ff15-acbd-4f2d-9db9-efedaf1b0a9e" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Deployment" xmi:id="32f722d2-f43c-4345-bacd-6c440fba74b6" name="deploy_checkoutservice" location="52114848-9ccf-4d3c-b535-c00dc1ea9a21" deployedArtifact="4d08ff15-acbd-4f2d-9db9-efedaf1b0a9e" />
+      <packagedElement xmi:type="uml:Artifact" xmi:id="1e9366de-5c99-43d3-855a-81ff938143d6" name="frontend_artifact">
+        <manifestation xmi:type="uml:Manifestation" xmi:id="ebb8d330-74cf-44be-8756-a1c226eff1e0" name="manifest_frontend" supplier="13884c20-bf28-40fe-b571-60a94a1b2278" client="1e9366de-5c99-43d3-855a-81ff938143d6" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Deployment" xmi:id="b84808c3-5719-4e04-9f1f-bc824c471da4" name="deploy_frontend" location="52114848-9ccf-4d3c-b535-c00dc1ea9a21" deployedArtifact="1e9366de-5c99-43d3-855a-81ff938143d6" />
+      <packagedElement xmi:type="uml:Artifact" xmi:id="1078c732-1848-40c6-80cd-15bbec51fee3" name="productcatalogservice_artifact">
+        <manifestation xmi:type="uml:Manifestation" xmi:id="ab7dd529-e43e-4e19-9d21-1be9526545af" name="manifest_productcatalogservice" supplier="c0c4c261-2e27-4194-894e-dfd528ea57ba" client="1078c732-1848-40c6-80cd-15bbec51fee3" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Deployment" xmi:id="d84d10b8-2589-4f9f-acf8-f25aae224fd2" name="deploy_productcatalogservice" location="52114848-9ccf-4d3c-b535-c00dc1ea9a21" deployedArtifact="1078c732-1848-40c6-80cd-15bbec51fee3" />
+      <packagedElement xmi:type="uml:Artifact" xmi:id="5889c5f5-5e46-4683-93ef-1e12dc52ab64" name="emailservice_artifact">
+        <manifestation xmi:type="uml:Manifestation" xmi:id="73a72abe-da6b-481d-8530-8df19ab1a031" name="manifest_emailservice" supplier="a095378d-05dc-479a-9b30-e906dc008ada" client="5889c5f5-5e46-4683-93ef-1e12dc52ab64" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Deployment" xmi:id="a8a3508c-ff54-4f87-ae03-b77b174d634b" name="deploy_emailservice" location="1619f8ed-845d-486e-a45b-c3b67fd0941e" deployedArtifact="5889c5f5-5e46-4683-93ef-1e12dc52ab64" />
+      <packagedElement xmi:type="uml:Artifact" xmi:id="4d68989e-baf9-4795-b33b-1181f7981bf2" name="recommendationservice_artifact">
+        <manifestation xmi:type="uml:Manifestation" xmi:id="f509310b-59fa-445b-acb1-9202f224a3fb" name="manifest_recommendationservice" supplier="06673de1-2a41-46cd-b005-46b355f82a34" client="4d68989e-baf9-4795-b33b-1181f7981bf2" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Deployment" xmi:id="0ac5647b-26da-42f5-afc4-e69ac31890a7" name="deploy_recommendationservice" location="1619f8ed-845d-486e-a45b-c3b67fd0941e" deployedArtifact="4d68989e-baf9-4795-b33b-1181f7981bf2" />
+      <packagedElement xmi:type="uml:Artifact" xmi:id="4d4e36ae-40a9-44a9-bceb-2ff08f595c54" name="currencyservice_artifact">
+        <manifestation xmi:type="uml:Manifestation" xmi:id="74e27c25-9386-45ed-87e3-449e72ab7927" name="manifest_currencyservice" supplier="0607f726-ca3d-4b6b-86a0-55322a95ff57" client="4d4e36ae-40a9-44a9-bceb-2ff08f595c54" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Deployment" xmi:id="b58119f5-57c8-41e7-906b-ee049ea51d68" name="deploy_currencyservice" location="e26f2d8e-f8a8-402d-a6a1-b347c6c156ac" deployedArtifact="4d4e36ae-40a9-44a9-bceb-2ff08f595c54" />
+      <packagedElement xmi:type="uml:Artifact" xmi:id="66c7897f-59e9-4968-a553-11891bbd5a35" name="paymentservice_artifact">
+        <manifestation xmi:type="uml:Manifestation" xmi:id="44360507-5109-410a-87fb-77058ce32318" name="manifest_paymentservice" supplier="5160c740-9085-4f42-a2cd-3c172bf1bd79" client="66c7897f-59e9-4968-a553-11891bbd5a35" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Deployment" xmi:id="3cd0b1eb-2371-4ac2-ac57-4db6d56a4dee" name="deploy_paymentservice" location="bd7bc024-83cd-4fa5-b762-59eb56dea97c" deployedArtifact="66c7897f-59e9-4968-a553-11891bbd5a35" />
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="fa42d316-3352-4071-afbb-6f2e7bd3d56d" name="UseCases">
+      <packagedElement xmi:type="uml:UseCase" xmi:id="07e1fade-eaa3-4d32-b94e-fe63d685ee69" name="traccia_frontend2">
+        <ownedBehavior xmi:type="uml:Interaction" xmi:id="1a16976d-db85-4eae-8638-15eb0102b3a8" name="traccia_frontend2_Interaction">
+          <lifeline xmi:id="aef4cd8f-c672-4f49-bfc1-035a3cedfe88" name="currencyservice" />
+          <lifeline xmi:id="21e7ae89-7c17-4b72-beac-9851b4b5c915" name="frontend" />
+          <lifeline xmi:id="ddfced42-0889-4bc9-a34e-38ff972bdbdb" name="productcatalogservice" />
+          <lifeline xmi:id="87c48ae6-007b-4794-8be9-8cc9c4cb5ac3" name="recommendationservice" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="71c082c4-0708-41ea-bb98-c461b276cc63" name="msg0_send" covered="21e7ae89-7c17-4b72-beac-9851b4b5c915" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="c97ebaa1-6c48-4b4b-a7ba-a5fa5803b91c" name="msg0_recv" covered="ddfced42-0889-4bc9-a34e-38ff972bdbdb" />
+          <message xmi:id="78c1a4e0-3073-467d-acd8-3d648ebec068" name="hipstershop.ProductCatalogService/GetProduct" messageSort="synchCall" sendEvent="71c082c4-0708-41ea-bb98-c461b276cc63" receiveEvent="c97ebaa1-6c48-4b4b-a7ba-a5fa5803b91c" signature="3c47b3b0-af13-425a-bd55-e1feafc59e9e" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="512f9681-0d5a-48d6-a0e9-69cb0969babd" name="msg1_send" covered="21e7ae89-7c17-4b72-beac-9851b4b5c915" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="7df771e5-73d0-4a04-8d28-38bff0021262" name="msg1_recv" covered="87c48ae6-007b-4794-8be9-8cc9c4cb5ac3" />
+          <message xmi:id="2ce761d1-89a3-455c-b7ca-73a595c13ae7" name="/hipstershop.RecommendationService/ListRecommendations" messageSort="synchCall" sendEvent="512f9681-0d5a-48d6-a0e9-69cb0969babd" receiveEvent="7df771e5-73d0-4a04-8d28-38bff0021262" signature="97ebe13c-9c84-435b-92f1-9e1b3971bfee" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="586513e5-0543-4043-b4f3-0b67f6d54a00" name="msg2_send" covered="87c48ae6-007b-4794-8be9-8cc9c4cb5ac3" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="de92880d-a4cd-411f-8102-d31b7b509fd5" name="msg2_recv" covered="ddfced42-0889-4bc9-a34e-38ff972bdbdb" />
+          <message xmi:id="dcacafab-a188-4553-a84d-272ca8eec5ca" name="hipstershop.ProductCatalogService/ListProducts" messageSort="synchCall" sendEvent="586513e5-0543-4043-b4f3-0b67f6d54a00" receiveEvent="de92880d-a4cd-411f-8102-d31b7b509fd5" signature="10e3a8b6-9897-4c99-9c38-aa44807d7ce9" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="c79661ed-a848-4009-8cb8-d71904c84754" name="msg3_send" covered="21e7ae89-7c17-4b72-beac-9851b4b5c915" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="d78b526a-d5f6-43f7-a56e-23dbc46f4a7e" name="msg3_recv" covered="ddfced42-0889-4bc9-a34e-38ff972bdbdb" />
+          <message xmi:id="b4d72e7d-71de-4c1f-8418-8818ca404936" name="hipstershop.ProductCatalogService/GetProduct" messageSort="synchCall" sendEvent="c79661ed-a848-4009-8cb8-d71904c84754" receiveEvent="d78b526a-d5f6-43f7-a56e-23dbc46f4a7e" signature="3c47b3b0-af13-425a-bd55-e1feafc59e9e" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="4d9b8953-7fb9-4a08-bbb6-340e7ff2c50a" name="msg4_send" covered="21e7ae89-7c17-4b72-beac-9851b4b5c915" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="81d17a5a-c442-4204-8ec9-b0dee5eb25c0" name="msg4_recv" covered="ddfced42-0889-4bc9-a34e-38ff972bdbdb" />
+          <message xmi:id="eff62a76-cb58-43f3-8170-c231ab8f108d" name="hipstershop.ProductCatalogService/GetProduct" messageSort="synchCall" sendEvent="4d9b8953-7fb9-4a08-bbb6-340e7ff2c50a" receiveEvent="81d17a5a-c442-4204-8ec9-b0dee5eb25c0" signature="3c47b3b0-af13-425a-bd55-e1feafc59e9e" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="7a753127-7a90-414d-8682-9a8189ec9eb4" name="msg5_send" covered="21e7ae89-7c17-4b72-beac-9851b4b5c915" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="7d9d152a-c31b-4217-bd93-7fcc4e8000c8" name="msg5_recv" covered="ddfced42-0889-4bc9-a34e-38ff972bdbdb" />
+          <message xmi:id="e00ab2f5-5b4b-45c5-a9ca-7131de717235" name="hipstershop.ProductCatalogService/GetProduct" messageSort="synchCall" sendEvent="7a753127-7a90-414d-8682-9a8189ec9eb4" receiveEvent="7d9d152a-c31b-4217-bd93-7fcc4e8000c8" signature="3c47b3b0-af13-425a-bd55-e1feafc59e9e" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="d70293c9-d242-4e94-a10d-94004fcf0688" name="msg6_send" covered="21e7ae89-7c17-4b72-beac-9851b4b5c915" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="85dfdfb1-c317-4e1f-8c48-16a553055959" name="msg6_recv" covered="ddfced42-0889-4bc9-a34e-38ff972bdbdb" />
+          <message xmi:id="cd1f718d-2b5c-4731-8566-a8e38664e406" name="hipstershop.ProductCatalogService/GetProduct" messageSort="synchCall" sendEvent="d70293c9-d242-4e94-a10d-94004fcf0688" receiveEvent="85dfdfb1-c317-4e1f-8c48-16a553055959" signature="3c47b3b0-af13-425a-bd55-e1feafc59e9e" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="00ae8696-5d31-4519-9de6-5372aaafc30f" name="msg7_send" covered="21e7ae89-7c17-4b72-beac-9851b4b5c915" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="3194ca27-2054-41d7-89dc-9fd602d36175" name="msg7_recv" covered="ddfced42-0889-4bc9-a34e-38ff972bdbdb" />
+          <message xmi:id="fb09cbf2-9ecd-4a81-bb68-9ef01e0c8bb6" name="hipstershop.ProductCatalogService/GetProduct" messageSort="synchCall" sendEvent="00ae8696-5d31-4519-9de6-5372aaafc30f" receiveEvent="3194ca27-2054-41d7-89dc-9fd602d36175" signature="3c47b3b0-af13-425a-bd55-e1feafc59e9e" />
+        </ownedBehavior>
+      </packagedElement>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="42929ee1-500c-47f1-a070-51bc9cea9dd6" name="traccia_payment">
+        <ownedBehavior xmi:type="uml:Interaction" xmi:id="966fa150-3892-4f2f-a778-9028e674e86b" name="traccia_payment_Interaction">
+          <lifeline xmi:id="0c42ddd3-fa66-419c-96f9-50acf4debb21" name="checkoutservice" />
+          <lifeline xmi:id="134c9de4-a050-430e-8310-8940dd9e725c" name="currencyservice" />
+          <lifeline xmi:id="e372400c-f7ef-430c-b28a-71a76662d1ec" name="emailservice" />
+          <lifeline xmi:id="ac9dc960-0bb8-417d-b164-6c5785eec952" name="frontend" />
+          <lifeline xmi:id="81764371-edc5-4d98-85cc-143ec8e93a52" name="paymentservice" />
+          <lifeline xmi:id="4a2b9fa8-95a2-4669-a9e1-a4fffc2cc812" name="productcatalogservice" />
+          <lifeline xmi:id="08795f5f-8a38-47d8-bf7d-2d6690579d9a" name="recommendationservice" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="604728dd-1220-4b6c-9bd8-161a2d1bafbe" name="msg0_send" covered="ac9dc960-0bb8-417d-b164-6c5785eec952" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="15e62a45-9621-4f59-8dc8-85cf0aff2a58" name="msg0_recv" covered="0c42ddd3-fa66-419c-96f9-50acf4debb21" />
+          <message xmi:id="6e5052be-bcbd-47cd-b311-ddec0dcc2738" name="hipstershop.CheckoutService/PlaceOrder" messageSort="synchCall" sendEvent="604728dd-1220-4b6c-9bd8-161a2d1bafbe" receiveEvent="15e62a45-9621-4f59-8dc8-85cf0aff2a58" signature="1e70e8db-04fc-40d5-9479-e311a450ee9d" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="4de73584-e70e-48be-977c-a3198154de27" name="msg1_send" covered="0c42ddd3-fa66-419c-96f9-50acf4debb21" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="bf326bf3-10a9-46be-b18f-4ca027872d05" name="msg1_recv" covered="4a2b9fa8-95a2-4669-a9e1-a4fffc2cc812" />
+          <message xmi:id="17ef2060-a63a-4ab5-bf72-66235b2c0f20" name="hipstershop.ProductCatalogService/GetProduct" messageSort="synchCall" sendEvent="4de73584-e70e-48be-977c-a3198154de27" receiveEvent="bf326bf3-10a9-46be-b18f-4ca027872d05" signature="3c47b3b0-af13-425a-bd55-e1feafc59e9e" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="fbe3753f-46de-4034-a0e2-dcc476872159" name="msg2_send" covered="0c42ddd3-fa66-419c-96f9-50acf4debb21" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="2db107b2-294e-4bd6-85a6-bcab612385bb" name="msg2_recv" covered="4a2b9fa8-95a2-4669-a9e1-a4fffc2cc812" />
+          <message xmi:id="5c9c39be-9e0d-452d-b01c-76304580792b" name="hipstershop.ProductCatalogService/GetProduct" messageSort="synchCall" sendEvent="fbe3753f-46de-4034-a0e2-dcc476872159" receiveEvent="2db107b2-294e-4bd6-85a6-bcab612385bb" signature="3c47b3b0-af13-425a-bd55-e1feafc59e9e" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="8cf4ddde-0b8c-4f59-a345-9e50ab359610" name="msg3_send" covered="0c42ddd3-fa66-419c-96f9-50acf4debb21" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="3c9cb708-829d-45fc-b181-11992741f869" name="msg3_recv" covered="4a2b9fa8-95a2-4669-a9e1-a4fffc2cc812" />
+          <message xmi:id="6f12aca6-e048-4865-b084-092e9d6b8620" name="hipstershop.ProductCatalogService/GetProduct" messageSort="synchCall" sendEvent="8cf4ddde-0b8c-4f59-a345-9e50ab359610" receiveEvent="3c9cb708-829d-45fc-b181-11992741f869" signature="3c47b3b0-af13-425a-bd55-e1feafc59e9e" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="630d035f-d407-4964-a554-451b6ff7060a" name="msg4_send" covered="0c42ddd3-fa66-419c-96f9-50acf4debb21" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="083548d0-ae1b-49b0-b610-a5f4cecc0993" name="msg4_recv" covered="e372400c-f7ef-430c-b28a-71a76662d1ec" />
+          <message xmi:id="fa558982-cb83-4d62-a51e-dac80d35c541" name="/hipstershop.EmailService/SendOrderConfirmation" messageSort="synchCall" sendEvent="630d035f-d407-4964-a554-451b6ff7060a" receiveEvent="083548d0-ae1b-49b0-b610-a5f4cecc0993" signature="424c27e8-a0cf-4297-8cab-c95ba9630169" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="1a2eb89e-fb29-4cde-827d-7dc2ee8e074c" name="msg5_send" covered="ac9dc960-0bb8-417d-b164-6c5785eec952" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="c5599075-1005-44ba-b7db-a9844162b085" name="msg5_recv" covered="08795f5f-8a38-47d8-bf7d-2d6690579d9a" />
+          <message xmi:id="34f062f4-a9bd-47cd-afac-e6f728f2be87" name="/hipstershop.RecommendationService/ListRecommendations" messageSort="synchCall" sendEvent="1a2eb89e-fb29-4cde-827d-7dc2ee8e074c" receiveEvent="c5599075-1005-44ba-b7db-a9844162b085" signature="97ebe13c-9c84-435b-92f1-9e1b3971bfee" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="e256d050-5df4-4847-8f20-742a50aa4a70" name="msg6_send" covered="08795f5f-8a38-47d8-bf7d-2d6690579d9a" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="a2e86c68-860a-4b5e-93ea-9eff6040997f" name="msg6_recv" covered="4a2b9fa8-95a2-4669-a9e1-a4fffc2cc812" />
+          <message xmi:id="8d3ed1c4-2f43-4c6e-acc6-13c00e6f19af" name="hipstershop.ProductCatalogService/ListProducts" messageSort="synchCall" sendEvent="e256d050-5df4-4847-8f20-742a50aa4a70" receiveEvent="a2e86c68-860a-4b5e-93ea-9eff6040997f" signature="10e3a8b6-9897-4c99-9c38-aa44807d7ce9" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="df0e31cc-9992-4e4a-afb3-2e8ed38225d1" name="msg7_send" covered="ac9dc960-0bb8-417d-b164-6c5785eec952" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="e8a46f28-b64e-4a09-8b37-97b735dcb8c4" name="msg7_recv" covered="4a2b9fa8-95a2-4669-a9e1-a4fffc2cc812" />
+          <message xmi:id="e39f3b86-c80a-4607-b9c6-959e53826b8f" name="hipstershop.ProductCatalogService/GetProduct" messageSort="synchCall" sendEvent="df0e31cc-9992-4e4a-afb3-2e8ed38225d1" receiveEvent="e8a46f28-b64e-4a09-8b37-97b735dcb8c4" signature="3c47b3b0-af13-425a-bd55-e1feafc59e9e" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="99d01e07-560e-4d1b-844a-99fa12bea78d" name="msg8_send" covered="ac9dc960-0bb8-417d-b164-6c5785eec952" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="8e190687-c005-4dc5-a8ea-748db926ecd0" name="msg8_recv" covered="4a2b9fa8-95a2-4669-a9e1-a4fffc2cc812" />
+          <message xmi:id="389869fe-bef2-490c-be92-019ff131d9d7" name="hipstershop.ProductCatalogService/GetProduct" messageSort="synchCall" sendEvent="99d01e07-560e-4d1b-844a-99fa12bea78d" receiveEvent="8e190687-c005-4dc5-a8ea-748db926ecd0" signature="3c47b3b0-af13-425a-bd55-e1feafc59e9e" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="528c400f-565f-43ae-b9d2-bc1d8d03b46e" name="msg9_send" covered="ac9dc960-0bb8-417d-b164-6c5785eec952" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="c4c2702c-f785-44b3-9045-0dc3736f0d83" name="msg9_recv" covered="4a2b9fa8-95a2-4669-a9e1-a4fffc2cc812" />
+          <message xmi:id="0f9fad55-5ea0-47cd-8f2a-1d07021e84eb" name="hipstershop.ProductCatalogService/GetProduct" messageSort="synchCall" sendEvent="528c400f-565f-43ae-b9d2-bc1d8d03b46e" receiveEvent="c4c2702c-f785-44b3-9045-0dc3736f0d83" signature="3c47b3b0-af13-425a-bd55-e1feafc59e9e" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="a6c5d4c5-aeb1-4a81-a0e2-73c86f3a5bfc" name="msg10_send" covered="ac9dc960-0bb8-417d-b164-6c5785eec952" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="6e904dca-6fd8-49d7-85d0-8b743a661860" name="msg10_recv" covered="4a2b9fa8-95a2-4669-a9e1-a4fffc2cc812" />
+          <message xmi:id="2f5ecb4f-a3da-4260-89a3-8d12dc5421fb" name="hipstershop.ProductCatalogService/GetProduct" messageSort="synchCall" sendEvent="a6c5d4c5-aeb1-4a81-a0e2-73c86f3a5bfc" receiveEvent="6e904dca-6fd8-49d7-85d0-8b743a661860" signature="3c47b3b0-af13-425a-bd55-e1feafc59e9e" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="e5eac1f3-c1bb-4d84-a9a4-fc0c23765918" name="msg11_send" covered="ac9dc960-0bb8-417d-b164-6c5785eec952" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="04155cce-d464-4ca4-af68-3bbe75690b4e" name="msg11_recv" covered="4a2b9fa8-95a2-4669-a9e1-a4fffc2cc812" />
+          <message xmi:id="0e684519-04ad-44bc-bae7-2a84657f3f13" name="hipstershop.ProductCatalogService/GetProduct" messageSort="synchCall" sendEvent="e5eac1f3-c1bb-4d84-a9a4-fc0c23765918" receiveEvent="04155cce-d464-4ca4-af68-3bbe75690b4e" signature="3c47b3b0-af13-425a-bd55-e1feafc59e9e" />
+        </ownedBehavior>
+      </packagedElement>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="db9370a8-6bc2-4d33-8c62-4559d93f8148" name="taccia_frontend">
+        <ownedBehavior xmi:type="uml:Interaction" xmi:id="047085ad-0a5c-43d2-aae2-4723d42c919b" name="taccia_frontend_Interaction">
+          <lifeline xmi:id="0a4530c7-c740-408e-905c-ab27b9b9eae2" name="currencyservice" />
+          <lifeline xmi:id="a67c2ba1-3246-4c35-9a41-9ff0c4c0acfe" name="frontend" />
+          <lifeline xmi:id="085f1f8e-2d77-4165-a95b-7f3e4b1e65cc" name="productcatalogservice" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="307dba8f-52da-4d2a-acc0-d16e56e810a0" name="msg0_send" covered="a67c2ba1-3246-4c35-9a41-9ff0c4c0acfe" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="44c9b8b6-8c34-427b-88ad-9538692914b7" name="msg0_recv" covered="085f1f8e-2d77-4165-a95b-7f3e4b1e65cc" />
+          <message xmi:id="c7e8ce30-fb05-4b8a-b1c8-7b98b482fa42" name="hipstershop.ProductCatalogService/ListProducts" messageSort="synchCall" sendEvent="307dba8f-52da-4d2a-acc0-d16e56e810a0" receiveEvent="44c9b8b6-8c34-427b-88ad-9538692914b7" signature="10e3a8b6-9897-4c99-9c38-aa44807d7ce9" />
+        </ownedBehavior>
+      </packagedElement>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="445b149d-5f94-43b5-bfbb-113aee0ac9bb" name="traccia_checkout">
+        <ownedBehavior xmi:type="uml:Interaction" xmi:id="dd5080d3-2d78-4e20-8949-94db7f4342d3" name="traccia_checkout_Interaction">
+          <lifeline xmi:id="9f11ff48-6e5d-4bbd-bde5-96b28357d27e" name="checkoutservice" />
+          <lifeline xmi:id="6b37d131-79b9-493d-9820-81e60536f3ef" name="currencyservice" />
+        </ownedBehavior>
+      </packagedElement>
+    </packagedElement>
+  </uml:Model>
+  <MARTE_GRM:RtUnit xmi:id="_marte_be9ff531-9c65-4179-b28d-057655619fef" base_BehavioredClassifier="5d3676d6-213e-444d-863a-49db767f42e1" isActive="true" />
+  <MARTE_GRM:RtUnit xmi:id="_marte_69e5bffc-06f9-44d4-8cec-78101d237bc9" base_BehavioredClassifier="0607f726-ca3d-4b6b-86a0-55322a95ff57" isActive="true" />
+  <MARTE_GRM:RtUnit xmi:id="_marte_e22a9604-1660-43ce-8313-1f8fd4defff1" base_BehavioredClassifier="a095378d-05dc-479a-9b30-e906dc008ada" isActive="true" />
+  <MARTE_GRM:RtUnit xmi:id="_marte_f78ea65d-f268-42ae-a1b4-c71a247a4f13" base_BehavioredClassifier="13884c20-bf28-40fe-b571-60a94a1b2278" isActive="true" />
+  <MARTE_GRM:RtUnit xmi:id="_marte_b54124f1-d753-49b7-8efb-c6af68a41199" base_BehavioredClassifier="5160c740-9085-4f42-a2cd-3c172bf1bd79" isActive="true" />
+  <MARTE_GRM:RtUnit xmi:id="_marte_9292c2df-88d4-462e-a180-afb8b062d2c4" base_BehavioredClassifier="c0c4c261-2e27-4194-894e-dfd528ea57ba" isActive="true" />
+  <MARTE_GRM:RtUnit xmi:id="_marte_03f43b33-2a95-4c4c-b7f0-090ece9d61ae" base_BehavioredClassifier="06673de1-2a41-46cd-b005-46b355f82a34" isActive="true" />
+  <MARTE_GRM:GaExecHost xmi:id="_marte_88b3b82e-099e-4cf7-9bba-420cc71636e2" base_Classifier="52114848-9ccf-4d3c-b535-c00dc1ea9a21" />
+  <MARTE_GRM:GaExecHost xmi:id="_marte_8414eaca-73c2-4f03-b6fd-0cfc8f0816d3" base_Classifier="1619f8ed-845d-486e-a45b-c3b67fd0941e" />
+  <MARTE_GRM:GaExecHost xmi:id="_marte_7c28f0cb-5ae1-4166-83b4-db279de1c9c3" base_Classifier="e26f2d8e-f8a8-402d-a6a1-b347c6c156ac" />
+  <MARTE_GRM:GaExecHost xmi:id="_marte_89da1710-d55c-4426-9b8b-68de3eb42cc4" base_Classifier="bd7bc024-83cd-4fa5-b762-59eb56dea97c" />
+  <MARTE_GQAM:GaAnalysisContext xmi:id="_marte_771f44ce-f4f4-45fb-93b6-548e26885ae6" base_NamedElement="1a16976d-db85-4eae-8638-15eb0102b3a8" isSingleMode="true" />
+  <MARTE_GQAM:GaAnalysisContext xmi:id="_marte_39b43544-f5b1-4314-8efc-7027afc95d82" base_NamedElement="966fa150-3892-4f2f-a778-9028e674e86b" isSingleMode="true" />
+  <MARTE_GQAM:GaAnalysisContext xmi:id="_marte_94a41dcc-a7ad-4e1a-900a-bbe91d21c6c9" base_NamedElement="047085ad-0a5c-43d2-aae2-4723d42c919b" isSingleMode="true" />
+  <MARTE_GQAM:GaAnalysisContext xmi:id="_marte_6236df51-b5f9-4016-85c0-14936b9fe37a" base_NamedElement="dd5080d3-2d78-4e20-8949-94db7f4342d3" isSingleMode="true" />
+  <MARTE_PAM:PaStep xmi:id="_marte_d587f707-0f67-4ee2-838d-17b2cdadaa7f" base_NamedElement="78c1a4e0-3073-467d-acd8-3d648ebec068" hostDemand="(value=0.093,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_8e4a3d98-ce29-454d-9a6d-603a0d491af7" base_NamedElement="2ce761d1-89a3-455c-b7ca-73a595c13ae7" hostDemand="(value=1.178,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_cf8dbd95-6bf3-48bf-b6c3-1d81dae1148e" base_NamedElement="dcacafab-a188-4553-a84d-272ca8eec5ca" hostDemand="(value=0.050,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_766c2aa1-13f3-4f4c-87d6-9898bc3d7414" base_NamedElement="b4d72e7d-71de-4c1f-8418-8818ca404936" hostDemand="(value=0.049,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_9bf6b10d-e3ef-4d14-be86-c43d3088ad2a" base_NamedElement="eff62a76-cb58-43f3-8170-c231ab8f108d" hostDemand="(value=0.018,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_658c14d0-3ec6-4210-ab8c-1c7002dd559b" base_NamedElement="e00ab2f5-5b4b-45c5-a9ca-7131de717235" hostDemand="(value=0.018,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_ad594536-27d9-4a14-a29e-cd6386cc9a47" base_NamedElement="cd1f718d-2b5c-4731-8566-a8e38664e406" hostDemand="(value=0.053,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_9267d9ea-d925-48bc-8cb2-b4388748a083" base_NamedElement="fb09cbf2-9ecd-4a81-bb68-9ef01e0c8bb6" hostDemand="(value=0.031,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_96aa7d90-7f86-4bb2-8200-ae36e55ba84f" base_NamedElement="6e5052be-bcbd-47cd-b311-ddec0dcc2738" hostDemand="(value=13.091,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_b9df27ec-84cd-47ec-852c-b39ce3c8164a" base_NamedElement="17ef2060-a63a-4ab5-bf72-66235b2c0f20" hostDemand="(value=0.103,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_80b9e97d-469c-403f-a0fa-abf522ea2fdd" base_NamedElement="5c9c39be-9e0d-452d-b01c-76304580792b" hostDemand="(value=0.091,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_86ef1025-ecb6-4569-a872-86b7a7d38a28" base_NamedElement="6f12aca6-e048-4865-b084-092e9d6b8620" hostDemand="(value=0.075,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_0c450769-3164-43df-a37c-6beb4dd44b65" base_NamedElement="fa558982-cb83-4d62-a51e-dac80d35c541" hostDemand="(value=0.166,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_18e47f47-0a6c-494a-b418-085e0e59dd8c" base_NamedElement="34f062f4-a9bd-47cd-afac-e6f728f2be87" hostDemand="(value=1.422,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_473e9810-48b7-4267-9a5f-6169476a16ac" base_NamedElement="8d3ed1c4-2f43-4c6e-acc6-13c00e6f19af" hostDemand="(value=0.103,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_c190ae16-da5d-458d-9c3c-6d9c1b1ddf5b" base_NamedElement="e39f3b86-c80a-4607-b9c6-959e53826b8f" hostDemand="(value=0.053,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_1eafd843-d1f1-4040-99d7-dabcf19463c9" base_NamedElement="389869fe-bef2-490c-be92-019ff131d9d7" hostDemand="(value=0.028,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_40601858-b36c-4e64-b50b-e0e43cba9515" base_NamedElement="0f9fad55-5ea0-47cd-8f2a-1d07021e84eb" hostDemand="(value=0.026,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_da7ef56f-722f-423d-a5a3-6f2bfc327325" base_NamedElement="2f5ecb4f-a3da-4260-89a3-8d12dc5421fb" hostDemand="(value=0.029,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_09531f3f-4db5-4e01-ae9a-abc9566935d6" base_NamedElement="0e684519-04ad-44bc-bae7-2a84657f3f13" hostDemand="(value=0.024,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_4e26e1dc-8879-45ca-ac87-4db5ff154ccb" base_NamedElement="c7e8ce30-fb05-4b8a-b1c8-7b98b482fa42" hostDemand="(value=0.082,unit=ms)" />
+</xmi:XMI>
