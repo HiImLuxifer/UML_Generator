@@ -7,7 +7,7 @@ from typing import List, Dict, Set
 from ..models import Trace
 from ..analyzer import TraceAggregator
 from ..renderer import XmiWriter, XmiFormat, MarteProfileWriter
-from ..utils import clean_operation_name, extract_base_name
+from ..utils import extract_simple_operation_name, extract_base_name
 
 
 logger = logging.getLogger(__name__)
@@ -134,7 +134,7 @@ class UnifiedXmiGenerator:
             
             # Add operations
             for op_name in sorted(operations):
-                clean_op = clean_operation_name(op_name)
+                clean_op = extract_simple_operation_name(op_name)
                 op_elem, op_id = self.xmi_writer.create_owned_element(
                     component, "ownedOperation",
                     name=clean_op, visibility="public"
@@ -289,7 +289,7 @@ class UnifiedXmiGenerator:
                             recv_event.set("covered", to_lifeline)
                             
                             # Create message
-                            clean_op = clean_operation_name(span.operation_name)
+                            clean_op = extract_simple_operation_name(span.operation_name)
                             message = ET.SubElement(interaction, "message")
                             message_id = self.xmi_writer.generate_uuid()
                             message.set(f"{{{self.xmi_writer.XMI_NAMESPACE}}}id", message_id)

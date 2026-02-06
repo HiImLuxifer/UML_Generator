@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmlns:MARTE_GQAM="http://www.omg.org/spec/MARTE/1.2/GQAM" xmlns:MARTE_GRM="http://www.omg.org/spec/MARTE/1.2/GRM" xmlns:MARTE_PAM="http://www.omg.org/spec/MARTE/1.2/PAM" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmi:version="2.5.1">
+  <uml:Model xmi:id="3584602b-0373-4c11-86a9-67ea64ede220" name="UnifiedModel">
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_marte_8b898286-c343-411f-9486-639d6fc99861">
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://MARTE_PROFILE/MARTE.profile.uml#_ar8OsAPMEdyuUvV5MHMtrQ" />
+    </profileApplication>
+    <packagedElement xmi:type="uml:Package" xmi:id="98be31ca-725f-4c1b-af9b-bb0f584e9f73" name="Components">
+      <packagedElement xmi:type="uml:Component" xmi:id="00f8c1cb-764c-4774-b95d-6725323bec04" name="checkoutservice" visibility="public">
+        <ownedOperation xmi:id="0fcb81e9-8a3a-478d-a634-becb0f6e6712" name="EmptyCart" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="61168f60-876f-43e3-9082-7bfdd3060a2f" name="GetCart" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="d2824452-0646-4b70-832c-208a71770c4c" name="PlaceOrder" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="f85d8921-37c9-4487-bfd4-e3d142694a97" name="Convert" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="bf721d1e-92d6-4705-ad92-6a33f687a113" name="SendOrderConfirmation" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="1e0a6539-3e7a-4709-8625-4ff0dc7ec534" name="Charge" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="66405b9c-1119-4d75-b2ff-b132dd4f1590" name="GetProduct" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="ceca1832-0aa4-416f-9e01-c8cfe8553fe9" name="GetQuote" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="87346c13-8a45-4ebb-8bb4-b69a8eae0379" name="ShipOrder" visibility="public" xmi:type="uml:Operation" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="6f572c30-cfa4-44da-9bbf-a79a7bf6b884" name="currencyservice" visibility="public">
+        <ownedOperation xmi:id="4cd83cd2-80a2-4287-95b3-575b33440156" name="Convert" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="baa75630-51d6-4624-a9fb-6cf39522acb5" name="GetSupportedCurrencies" visibility="public" xmi:type="uml:Operation" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="de4b4c56-c7ce-4a41-9d48-f616dd342c76" name="emailservice" visibility="public">
+        <ownedOperation xmi:id="7cc21a86-e662-4f42-96e2-6ca390d03a16" name="SendOrderConfirmation" visibility="public" xmi:type="uml:Operation" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="354f9807-83c1-4564-8396-5d2e30fddb90" name="frontend" visibility="public">
+        <ownedOperation xmi:id="6318d8bf-f6e8-44a0-b66b-e3a535ee9e49" name="frontend" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="901d1add-83b6-4d2d-b636-43237e69dfc3" name="GetAds" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="5ccfd062-06be-4a22-a419-1d41b4e36e3c" name="GetCart" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="ed32d3f4-47b3-4d03-baa0-4c31323a1935" name="PlaceOrder" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="273521eb-941d-4b2c-b9c5-dd8c9d9fe59b" name="Convert" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="c065e145-5945-4dde-8dce-9cb92cd184a5" name="GetSupportedCurrencies" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="6e765789-16c8-4674-bf55-1ca334d41c91" name="GetProduct" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="47243af6-3533-41c2-9977-d012a4412a2e" name="ListProducts" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="9b74196f-8428-4de8-98ac-de1ef8658867" name="ListRecommendations" visibility="public" xmi:type="uml:Operation" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="676e1a7b-61cd-4aaa-9662-c5c3e68ef077" name="paymentservice" visibility="public">
+        <ownedOperation xmi:id="9fe49377-b243-4fc6-ae5f-55f92b620558" name="Charge" visibility="public" xmi:type="uml:Operation" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="e742fd5f-abd3-475a-b9f1-9300109eced2" name="productcatalogservice" visibility="public">
+        <ownedOperation xmi:id="9299d996-c0f8-47f1-ae16-81ee569ba861" name="GetProduct" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="65f8d598-e4c4-407b-aea2-88cd37d437bf" name="ListProducts" visibility="public" xmi:type="uml:Operation" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="598ceada-0cb0-4b96-aab1-797436a5d8a8" name="recommendationservice" visibility="public">
+        <ownedOperation xmi:id="717f8d0e-1a0e-4882-8d1f-286df0247d6a" name="ListProducts" visibility="public" xmi:type="uml:Operation" />
+        <ownedOperation xmi:id="38b0205b-9268-4e17-b211-9527287b2ec8" name="ListRecommendations" visibility="public" xmi:type="uml:Operation" />
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="1d08f0b5-94f8-4a93-8f68-16422636760b" name="Dependencies">
+      <packagedElement xmi:type="uml:Usage" xmi:id="97063478-674b-44a5-ad95-e292a8d4f046" name="frontend_to_productcatalogservice">
+        <client xmi:idref="354f9807-83c1-4564-8396-5d2e30fddb90" />
+        <supplier xmi:idref="e742fd5f-abd3-475a-b9f1-9300109eced2" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="ea361291-670e-459c-8633-081d1c03e037" name="frontend_to_recommendationservice">
+        <client xmi:idref="354f9807-83c1-4564-8396-5d2e30fddb90" />
+        <supplier xmi:idref="598ceada-0cb0-4b96-aab1-797436a5d8a8" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="5535ef36-8771-484c-9b69-87498393f357" name="frontend_to_checkoutservice">
+        <client xmi:idref="354f9807-83c1-4564-8396-5d2e30fddb90" />
+        <supplier xmi:idref="00f8c1cb-764c-4774-b95d-6725323bec04" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="1f900890-d102-4fa6-86ab-206559b3feec" name="recommendationservice_to_productcatalogservice">
+        <client xmi:idref="598ceada-0cb0-4b96-aab1-797436a5d8a8" />
+        <supplier xmi:idref="e742fd5f-abd3-475a-b9f1-9300109eced2" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="d85d13c3-1c4c-4ade-991d-81537cf592f1" name="checkoutservice_to_productcatalogservice">
+        <client xmi:idref="00f8c1cb-764c-4774-b95d-6725323bec04" />
+        <supplier xmi:idref="e742fd5f-abd3-475a-b9f1-9300109eced2" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="7bc63611-f08b-4735-bc77-eff3fda09027" name="checkoutservice_to_emailservice">
+        <client xmi:idref="00f8c1cb-764c-4774-b95d-6725323bec04" />
+        <supplier xmi:idref="de4b4c56-c7ce-4a41-9d48-f616dd342c76" />
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="7c808640-fdd7-4219-9135-56327b2c1082" name="Deployment">
+      <packagedElement xmi:type="uml:Node" xmi:id="db8ca99f-a777-40b3-8852-cf5c1cc74924" name="Node-7142" />
+      <packagedElement xmi:type="uml:Node" xmi:id="7ae0ab07-c7bc-4da6-ba7d-061df13cbd28" name="Node-9180" />
+      <packagedElement xmi:type="uml:Node" xmi:id="600f7095-a882-4788-afb4-5085ef3a0071" name="currencyservice" />
+      <packagedElement xmi:type="uml:Node" xmi:id="116424fa-a2b3-4fe7-8917-f45a4e7ecd2d" name="paymentservice" />
+      <packagedElement xmi:type="uml:Artifact" xmi:id="aee81514-d601-4655-a723-c9f4cfe49cc0" name="checkoutservice_artifact">
+        <manifestation xmi:type="uml:Manifestation" xmi:id="9cfb9fb2-ca5e-4e81-82c3-37399b3f0c39" name="manifest_checkoutservice" supplier="00f8c1cb-764c-4774-b95d-6725323bec04" client="aee81514-d601-4655-a723-c9f4cfe49cc0" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Deployment" xmi:id="ac697947-b894-4ef7-9216-326378f53da0" name="deploy_checkoutservice" location="7ae0ab07-c7bc-4da6-ba7d-061df13cbd28" deployedArtifact="aee81514-d601-4655-a723-c9f4cfe49cc0" />
+      <packagedElement xmi:type="uml:Artifact" xmi:id="f76c2d31-f0fe-41bd-b7a6-7f36ac4728ce" name="frontend_artifact">
+        <manifestation xmi:type="uml:Manifestation" xmi:id="2da6cb23-bf43-4755-8789-a287753bd54c" name="manifest_frontend" supplier="354f9807-83c1-4564-8396-5d2e30fddb90" client="f76c2d31-f0fe-41bd-b7a6-7f36ac4728ce" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Deployment" xmi:id="535d96eb-17f2-41b1-b6dc-ef2d92470a87" name="deploy_frontend" location="7ae0ab07-c7bc-4da6-ba7d-061df13cbd28" deployedArtifact="f76c2d31-f0fe-41bd-b7a6-7f36ac4728ce" />
+      <packagedElement xmi:type="uml:Artifact" xmi:id="079d1df2-e06f-4aeb-9063-063b97f0960a" name="productcatalogservice_artifact">
+        <manifestation xmi:type="uml:Manifestation" xmi:id="121d6cc8-9623-448e-bd71-f651027fdbeb" name="manifest_productcatalogservice" supplier="e742fd5f-abd3-475a-b9f1-9300109eced2" client="079d1df2-e06f-4aeb-9063-063b97f0960a" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Deployment" xmi:id="74d22660-dc96-4fdd-9301-241b2a0f8bb2" name="deploy_productcatalogservice" location="7ae0ab07-c7bc-4da6-ba7d-061df13cbd28" deployedArtifact="079d1df2-e06f-4aeb-9063-063b97f0960a" />
+      <packagedElement xmi:type="uml:Artifact" xmi:id="ab4bbc04-de41-482d-9e51-28b97dd4686e" name="emailservice_artifact">
+        <manifestation xmi:type="uml:Manifestation" xmi:id="75e49b70-0c37-408a-b9ab-c990e8d3f6cd" name="manifest_emailservice" supplier="de4b4c56-c7ce-4a41-9d48-f616dd342c76" client="ab4bbc04-de41-482d-9e51-28b97dd4686e" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Deployment" xmi:id="f6f9927f-dfd7-4c0f-b796-ec01a590196e" name="deploy_emailservice" location="db8ca99f-a777-40b3-8852-cf5c1cc74924" deployedArtifact="ab4bbc04-de41-482d-9e51-28b97dd4686e" />
+      <packagedElement xmi:type="uml:Artifact" xmi:id="f4618915-5af7-471f-801b-7e51491036a4" name="recommendationservice_artifact">
+        <manifestation xmi:type="uml:Manifestation" xmi:id="478d418a-2216-444a-ba2e-5ea2706fdf54" name="manifest_recommendationservice" supplier="598ceada-0cb0-4b96-aab1-797436a5d8a8" client="f4618915-5af7-471f-801b-7e51491036a4" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Deployment" xmi:id="35aa9d59-936b-4e4d-b6af-c716bcd03459" name="deploy_recommendationservice" location="db8ca99f-a777-40b3-8852-cf5c1cc74924" deployedArtifact="f4618915-5af7-471f-801b-7e51491036a4" />
+      <packagedElement xmi:type="uml:Artifact" xmi:id="b1369794-cc6a-4adb-bb6e-eea17cc4b94e" name="currencyservice_artifact">
+        <manifestation xmi:type="uml:Manifestation" xmi:id="69be97cf-90ea-4075-a332-3d1a7a4ebb48" name="manifest_currencyservice" supplier="6f572c30-cfa4-44da-9bbf-a79a7bf6b884" client="b1369794-cc6a-4adb-bb6e-eea17cc4b94e" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Deployment" xmi:id="289722d1-1e1e-4e63-91fd-ab6f17b47422" name="deploy_currencyservice" location="600f7095-a882-4788-afb4-5085ef3a0071" deployedArtifact="b1369794-cc6a-4adb-bb6e-eea17cc4b94e" />
+      <packagedElement xmi:type="uml:Artifact" xmi:id="49b8ab52-a1c6-460b-8b23-2f990dcdedb7" name="paymentservice_artifact">
+        <manifestation xmi:type="uml:Manifestation" xmi:id="5eda8a39-eeb7-46b1-89e3-2220fb1c502a" name="manifest_paymentservice" supplier="676e1a7b-61cd-4aaa-9662-c5c3e68ef077" client="49b8ab52-a1c6-460b-8b23-2f990dcdedb7" />
+      </packagedElement>
+      <packagedElement xmi:type="uml:Deployment" xmi:id="15a386f8-839b-466d-b74d-a5240f88f20f" name="deploy_paymentservice" location="116424fa-a2b3-4fe7-8917-f45a4e7ecd2d" deployedArtifact="49b8ab52-a1c6-460b-8b23-2f990dcdedb7" />
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="4c558ed0-171c-4bec-9fa1-23b6a5bcc68a" name="UseCases">
+      <packagedElement xmi:type="uml:UseCase" xmi:id="9eb1225b-9d4f-4db2-b085-0362d3db5700" name="traccia_frontend2">
+        <ownedBehavior xmi:type="uml:Interaction" xmi:id="e1c3b561-294e-4286-92cc-0393db1041c9" name="traccia_frontend2_Interaction">
+          <lifeline xmi:id="39e96817-fefb-47be-824d-2bc6d8f69453" name="currencyservice" />
+          <lifeline xmi:id="ce0f00e8-d12a-46f4-b839-4edce4a11d17" name="frontend" />
+          <lifeline xmi:id="f73fa970-67d0-4f2d-8b41-70556fa6b2ee" name="productcatalogservice" />
+          <lifeline xmi:id="650ece31-ba2f-4d8e-b886-f5af391f379e" name="recommendationservice" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="4611310c-9fe0-471a-a4a9-5144ff10cdeb" name="msg0_send" covered="ce0f00e8-d12a-46f4-b839-4edce4a11d17" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="466d1021-cdd4-4d4d-bef8-679be5e5c067" name="msg0_recv" covered="f73fa970-67d0-4f2d-8b41-70556fa6b2ee" />
+          <message xmi:id="2bdc5fb5-0c88-419d-8b7a-3ebf7e3d9b33" name="GetProduct" messageSort="synchCall" sendEvent="4611310c-9fe0-471a-a4a9-5144ff10cdeb" receiveEvent="466d1021-cdd4-4d4d-bef8-679be5e5c067" signature="9299d996-c0f8-47f1-ae16-81ee569ba861" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="cc8d5420-24e1-466b-9c97-8a2f5efab100" name="msg1_send" covered="ce0f00e8-d12a-46f4-b839-4edce4a11d17" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="340f0e72-ea82-4cf0-9925-b4e2b8805830" name="msg1_recv" covered="650ece31-ba2f-4d8e-b886-f5af391f379e" />
+          <message xmi:id="270c5aa7-599b-4fef-858d-14daee543c43" name="ListRecommendations" messageSort="synchCall" sendEvent="cc8d5420-24e1-466b-9c97-8a2f5efab100" receiveEvent="340f0e72-ea82-4cf0-9925-b4e2b8805830" signature="38b0205b-9268-4e17-b211-9527287b2ec8" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="d89f3f8e-847a-446b-8381-c970801bee1f" name="msg2_send" covered="650ece31-ba2f-4d8e-b886-f5af391f379e" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="9043a263-6ec7-4996-bd4a-c36a1012f145" name="msg2_recv" covered="f73fa970-67d0-4f2d-8b41-70556fa6b2ee" />
+          <message xmi:id="800dc5d1-01c9-445c-8bf9-0a0073ec3402" name="ListProducts" messageSort="synchCall" sendEvent="d89f3f8e-847a-446b-8381-c970801bee1f" receiveEvent="9043a263-6ec7-4996-bd4a-c36a1012f145" signature="65f8d598-e4c4-407b-aea2-88cd37d437bf" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="00b041eb-54d9-4324-a485-7192fdc95a69" name="msg3_send" covered="ce0f00e8-d12a-46f4-b839-4edce4a11d17" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="4a8c8392-f332-4953-a2de-8a81079ceba8" name="msg3_recv" covered="f73fa970-67d0-4f2d-8b41-70556fa6b2ee" />
+          <message xmi:id="d3941cbb-d76a-4d98-a150-a97757c820d9" name="GetProduct" messageSort="synchCall" sendEvent="00b041eb-54d9-4324-a485-7192fdc95a69" receiveEvent="4a8c8392-f332-4953-a2de-8a81079ceba8" signature="9299d996-c0f8-47f1-ae16-81ee569ba861" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="f1a29017-b0c4-4091-9100-99100b63f5d4" name="msg4_send" covered="ce0f00e8-d12a-46f4-b839-4edce4a11d17" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="c401dba4-496f-4ec8-a50a-30c1da2b1327" name="msg4_recv" covered="f73fa970-67d0-4f2d-8b41-70556fa6b2ee" />
+          <message xmi:id="c4d8ac71-1690-40a2-952b-95e91c0ef69f" name="GetProduct" messageSort="synchCall" sendEvent="f1a29017-b0c4-4091-9100-99100b63f5d4" receiveEvent="c401dba4-496f-4ec8-a50a-30c1da2b1327" signature="9299d996-c0f8-47f1-ae16-81ee569ba861" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="99e3fb7f-2d3e-4375-a32a-1ebfa52f7a71" name="msg5_send" covered="ce0f00e8-d12a-46f4-b839-4edce4a11d17" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="e4348845-c53b-4828-a48b-4ddf6221cedc" name="msg5_recv" covered="f73fa970-67d0-4f2d-8b41-70556fa6b2ee" />
+          <message xmi:id="d254eaee-d4dd-4cda-9c94-e66efeec2c61" name="GetProduct" messageSort="synchCall" sendEvent="99e3fb7f-2d3e-4375-a32a-1ebfa52f7a71" receiveEvent="e4348845-c53b-4828-a48b-4ddf6221cedc" signature="9299d996-c0f8-47f1-ae16-81ee569ba861" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="a0df1a3e-d049-4a3d-9efb-bb3e993e786c" name="msg6_send" covered="ce0f00e8-d12a-46f4-b839-4edce4a11d17" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="4595c616-86bb-45f0-953b-ab1d24af36ce" name="msg6_recv" covered="f73fa970-67d0-4f2d-8b41-70556fa6b2ee" />
+          <message xmi:id="8419f2f5-8540-4f5e-b71d-6231486c473a" name="GetProduct" messageSort="synchCall" sendEvent="a0df1a3e-d049-4a3d-9efb-bb3e993e786c" receiveEvent="4595c616-86bb-45f0-953b-ab1d24af36ce" signature="9299d996-c0f8-47f1-ae16-81ee569ba861" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="0120b349-5a70-4aa4-85cc-6fe1e973292f" name="msg7_send" covered="ce0f00e8-d12a-46f4-b839-4edce4a11d17" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="341c49de-4b69-4d9b-b2f5-faf99fdf2b7d" name="msg7_recv" covered="f73fa970-67d0-4f2d-8b41-70556fa6b2ee" />
+          <message xmi:id="ae9fc769-0ff0-4f30-877d-5b8bd1ebd194" name="GetProduct" messageSort="synchCall" sendEvent="0120b349-5a70-4aa4-85cc-6fe1e973292f" receiveEvent="341c49de-4b69-4d9b-b2f5-faf99fdf2b7d" signature="9299d996-c0f8-47f1-ae16-81ee569ba861" />
+        </ownedBehavior>
+      </packagedElement>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="73f07eba-8050-4e3c-86c8-8cd4a4a53271" name="traccia_payment">
+        <ownedBehavior xmi:type="uml:Interaction" xmi:id="f1b2a298-37ae-4727-9604-17bb9669e695" name="traccia_payment_Interaction">
+          <lifeline xmi:id="8e17ec0f-ba9d-47a7-8940-2fc29a0bb2b3" name="checkoutservice" />
+          <lifeline xmi:id="bd7670f2-13bd-4dcf-ba44-fcf0af01c98b" name="currencyservice" />
+          <lifeline xmi:id="9007c340-eb4d-487e-a8f4-79baefac79ba" name="emailservice" />
+          <lifeline xmi:id="c097c0ed-2809-4966-a654-6a3694187c76" name="frontend" />
+          <lifeline xmi:id="fb9d9592-98d5-4c41-ba2f-ffd5b5a014ae" name="paymentservice" />
+          <lifeline xmi:id="12b63008-3404-4efe-9b3b-0115329a2ed5" name="productcatalogservice" />
+          <lifeline xmi:id="fdcaec4d-492a-480c-850a-633fc726b3ec" name="recommendationservice" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="fb40a395-3f7f-4140-8d78-5e3ad3b043f4" name="msg0_send" covered="c097c0ed-2809-4966-a654-6a3694187c76" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="67144cc9-a232-41c6-87c1-1fa7b05d63c4" name="msg0_recv" covered="8e17ec0f-ba9d-47a7-8940-2fc29a0bb2b3" />
+          <message xmi:id="bbca82dc-6398-4501-aba1-e6ac8053747a" name="PlaceOrder" messageSort="synchCall" sendEvent="fb40a395-3f7f-4140-8d78-5e3ad3b043f4" receiveEvent="67144cc9-a232-41c6-87c1-1fa7b05d63c4" signature="d2824452-0646-4b70-832c-208a71770c4c" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="b4fc20cf-18e8-4950-afe6-4b388305bab0" name="msg1_send" covered="8e17ec0f-ba9d-47a7-8940-2fc29a0bb2b3" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="d4cc1e92-268a-4a6d-8924-a383c11b47eb" name="msg1_recv" covered="12b63008-3404-4efe-9b3b-0115329a2ed5" />
+          <message xmi:id="49284abf-ca95-4410-8e0b-6b2a3c4c56ad" name="GetProduct" messageSort="synchCall" sendEvent="b4fc20cf-18e8-4950-afe6-4b388305bab0" receiveEvent="d4cc1e92-268a-4a6d-8924-a383c11b47eb" signature="9299d996-c0f8-47f1-ae16-81ee569ba861" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="3d8f755a-53a2-4fcb-8a2f-189ca890edce" name="msg2_send" covered="8e17ec0f-ba9d-47a7-8940-2fc29a0bb2b3" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="e729d453-89f9-4d47-a208-7433fa5c9e6e" name="msg2_recv" covered="12b63008-3404-4efe-9b3b-0115329a2ed5" />
+          <message xmi:id="97b01250-c9fa-458b-aa5c-58a80376d9cc" name="GetProduct" messageSort="synchCall" sendEvent="3d8f755a-53a2-4fcb-8a2f-189ca890edce" receiveEvent="e729d453-89f9-4d47-a208-7433fa5c9e6e" signature="9299d996-c0f8-47f1-ae16-81ee569ba861" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="47031291-a93f-4c57-b916-ce3ac26f8f90" name="msg3_send" covered="8e17ec0f-ba9d-47a7-8940-2fc29a0bb2b3" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="3f604767-5770-406c-9165-ee820d7d3059" name="msg3_recv" covered="12b63008-3404-4efe-9b3b-0115329a2ed5" />
+          <message xmi:id="2d2a9647-cd0a-46c7-8f32-1439fb0c05c6" name="GetProduct" messageSort="synchCall" sendEvent="47031291-a93f-4c57-b916-ce3ac26f8f90" receiveEvent="3f604767-5770-406c-9165-ee820d7d3059" signature="9299d996-c0f8-47f1-ae16-81ee569ba861" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="0a4da22e-f0b7-4f22-9cfd-2b44f91ee24f" name="msg4_send" covered="8e17ec0f-ba9d-47a7-8940-2fc29a0bb2b3" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="546cd6ee-f4b6-4ad2-a8f3-9c32b92e8eb5" name="msg4_recv" covered="9007c340-eb4d-487e-a8f4-79baefac79ba" />
+          <message xmi:id="507f149a-294c-46d7-89c0-2c495bdc4c2a" name="SendOrderConfirmation" messageSort="synchCall" sendEvent="0a4da22e-f0b7-4f22-9cfd-2b44f91ee24f" receiveEvent="546cd6ee-f4b6-4ad2-a8f3-9c32b92e8eb5" signature="7cc21a86-e662-4f42-96e2-6ca390d03a16" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="d5bf34e0-191c-488d-9f37-9c33ce0b2964" name="msg5_send" covered="c097c0ed-2809-4966-a654-6a3694187c76" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="e1cd42c8-2136-4acc-93d1-3e594ebcc72e" name="msg5_recv" covered="fdcaec4d-492a-480c-850a-633fc726b3ec" />
+          <message xmi:id="483710ea-048a-478a-aabc-88b3b6ac2faa" name="ListRecommendations" messageSort="synchCall" sendEvent="d5bf34e0-191c-488d-9f37-9c33ce0b2964" receiveEvent="e1cd42c8-2136-4acc-93d1-3e594ebcc72e" signature="38b0205b-9268-4e17-b211-9527287b2ec8" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="98e608ce-3539-4146-860b-2a40d2beebb3" name="msg6_send" covered="fdcaec4d-492a-480c-850a-633fc726b3ec" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="647f6624-cb31-437b-a257-8bda8bbe4b5b" name="msg6_recv" covered="12b63008-3404-4efe-9b3b-0115329a2ed5" />
+          <message xmi:id="9c702ad3-404c-4d38-a923-c11fc69c9896" name="ListProducts" messageSort="synchCall" sendEvent="98e608ce-3539-4146-860b-2a40d2beebb3" receiveEvent="647f6624-cb31-437b-a257-8bda8bbe4b5b" signature="65f8d598-e4c4-407b-aea2-88cd37d437bf" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="b7ad828f-a6d0-439f-89ee-a6f15f5b5d8e" name="msg7_send" covered="c097c0ed-2809-4966-a654-6a3694187c76" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="12680520-1e77-4f73-a82a-840d78d2c778" name="msg7_recv" covered="12b63008-3404-4efe-9b3b-0115329a2ed5" />
+          <message xmi:id="901b1ca1-7665-4446-8dc2-f5c50c5a0832" name="GetProduct" messageSort="synchCall" sendEvent="b7ad828f-a6d0-439f-89ee-a6f15f5b5d8e" receiveEvent="12680520-1e77-4f73-a82a-840d78d2c778" signature="9299d996-c0f8-47f1-ae16-81ee569ba861" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="38627214-9f4f-48e4-b7bd-a5ab1a730eed" name="msg8_send" covered="c097c0ed-2809-4966-a654-6a3694187c76" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="d5395f70-b34a-49b2-91a9-469b59b46b7f" name="msg8_recv" covered="12b63008-3404-4efe-9b3b-0115329a2ed5" />
+          <message xmi:id="b7f4121d-84db-4912-b0f6-b4cb28629f05" name="GetProduct" messageSort="synchCall" sendEvent="38627214-9f4f-48e4-b7bd-a5ab1a730eed" receiveEvent="d5395f70-b34a-49b2-91a9-469b59b46b7f" signature="9299d996-c0f8-47f1-ae16-81ee569ba861" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="7dc0834e-348b-4ac2-b012-b218c6d501f2" name="msg9_send" covered="c097c0ed-2809-4966-a654-6a3694187c76" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="02907133-6119-463c-b961-6e9d34375de4" name="msg9_recv" covered="12b63008-3404-4efe-9b3b-0115329a2ed5" />
+          <message xmi:id="3b0f04c9-ff20-4924-ae0d-77147e1e0301" name="GetProduct" messageSort="synchCall" sendEvent="7dc0834e-348b-4ac2-b012-b218c6d501f2" receiveEvent="02907133-6119-463c-b961-6e9d34375de4" signature="9299d996-c0f8-47f1-ae16-81ee569ba861" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="144ad458-6bcf-402f-b312-c29ad85dcfe0" name="msg10_send" covered="c097c0ed-2809-4966-a654-6a3694187c76" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="9ca00b3a-6a94-437f-af16-771894bc885e" name="msg10_recv" covered="12b63008-3404-4efe-9b3b-0115329a2ed5" />
+          <message xmi:id="88bdde72-c3d9-40c9-a3dc-4c94751d0878" name="GetProduct" messageSort="synchCall" sendEvent="144ad458-6bcf-402f-b312-c29ad85dcfe0" receiveEvent="9ca00b3a-6a94-437f-af16-771894bc885e" signature="9299d996-c0f8-47f1-ae16-81ee569ba861" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="4792f1d8-cbc4-4dd3-9275-09071a89cca4" name="msg11_send" covered="c097c0ed-2809-4966-a654-6a3694187c76" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="55494d4d-466d-44f7-b638-6fc5fbc456c0" name="msg11_recv" covered="12b63008-3404-4efe-9b3b-0115329a2ed5" />
+          <message xmi:id="74349f11-0f36-4b53-8a57-58f8350fddbd" name="GetProduct" messageSort="synchCall" sendEvent="4792f1d8-cbc4-4dd3-9275-09071a89cca4" receiveEvent="55494d4d-466d-44f7-b638-6fc5fbc456c0" signature="9299d996-c0f8-47f1-ae16-81ee569ba861" />
+        </ownedBehavior>
+      </packagedElement>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="de0f5b40-1b11-40ff-85ff-b05dd6a620d2" name="taccia_frontend">
+        <ownedBehavior xmi:type="uml:Interaction" xmi:id="486ec6e4-3aa5-4076-8bd7-b044ad916409" name="taccia_frontend_Interaction">
+          <lifeline xmi:id="63a95e04-74ef-439b-b3a6-3edb1cb6a9ad" name="currencyservice" />
+          <lifeline xmi:id="e952c097-06ec-4234-b4bf-ee2d0c14bf06" name="frontend" />
+          <lifeline xmi:id="343a321c-0a2b-421a-86b0-7c2ed54f4303" name="productcatalogservice" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="337c42d8-7262-4325-8b5e-99959819c0c5" name="msg0_send" covered="e952c097-06ec-4234-b4bf-ee2d0c14bf06" />
+          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="f06419be-acb5-4a41-af65-befbe6fa71e8" name="msg0_recv" covered="343a321c-0a2b-421a-86b0-7c2ed54f4303" />
+          <message xmi:id="17b620b7-ddfb-415d-8fe2-cfc9371a2691" name="ListProducts" messageSort="synchCall" sendEvent="337c42d8-7262-4325-8b5e-99959819c0c5" receiveEvent="f06419be-acb5-4a41-af65-befbe6fa71e8" signature="65f8d598-e4c4-407b-aea2-88cd37d437bf" />
+        </ownedBehavior>
+      </packagedElement>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="ddb596e9-ab33-4a3f-b8a8-22b14bb959c3" name="traccia_checkout">
+        <ownedBehavior xmi:type="uml:Interaction" xmi:id="84dd465b-4fc6-4012-a529-bad05dfeefc3" name="traccia_checkout_Interaction">
+          <lifeline xmi:id="f8189a53-ec3f-4901-9707-0298c0dfe063" name="checkoutservice" />
+          <lifeline xmi:id="bb5e0095-3e06-4348-a58d-b8a3c9a6330d" name="currencyservice" />
+        </ownedBehavior>
+      </packagedElement>
+    </packagedElement>
+  </uml:Model>
+  <MARTE_GRM:RtUnit xmi:id="_marte_1572227a-d9c3-48d5-9adb-04b94f051141" base_BehavioredClassifier="00f8c1cb-764c-4774-b95d-6725323bec04" isActive="true" />
+  <MARTE_GRM:RtUnit xmi:id="_marte_f54bfd0b-51e5-4ea2-9cc1-075861d308d5" base_BehavioredClassifier="6f572c30-cfa4-44da-9bbf-a79a7bf6b884" isActive="true" />
+  <MARTE_GRM:RtUnit xmi:id="_marte_df2b602b-27b0-43ef-98cc-8805e23b8bc9" base_BehavioredClassifier="de4b4c56-c7ce-4a41-9d48-f616dd342c76" isActive="true" />
+  <MARTE_GRM:RtUnit xmi:id="_marte_1c738110-b043-46a5-8e8a-1c86abb7cdb0" base_BehavioredClassifier="354f9807-83c1-4564-8396-5d2e30fddb90" isActive="true" />
+  <MARTE_GRM:RtUnit xmi:id="_marte_cb2ed882-1505-4fd1-8386-efa4f75484c5" base_BehavioredClassifier="676e1a7b-61cd-4aaa-9662-c5c3e68ef077" isActive="true" />
+  <MARTE_GRM:RtUnit xmi:id="_marte_b6351d31-0a86-4d51-b0b1-c9795680cf35" base_BehavioredClassifier="e742fd5f-abd3-475a-b9f1-9300109eced2" isActive="true" />
+  <MARTE_GRM:RtUnit xmi:id="_marte_15ca5742-c79a-4fc2-be78-4f8bfd0c2173" base_BehavioredClassifier="598ceada-0cb0-4b96-aab1-797436a5d8a8" isActive="true" />
+  <MARTE_GRM:GaExecHost xmi:id="_marte_67f606a6-7ea0-4bce-a1bd-6a75f57c9f7e" base_Classifier="db8ca99f-a777-40b3-8852-cf5c1cc74924" />
+  <MARTE_GRM:GaExecHost xmi:id="_marte_bc6c4e8e-9b25-4245-8d78-ad052f7d6437" base_Classifier="7ae0ab07-c7bc-4da6-ba7d-061df13cbd28" />
+  <MARTE_GRM:GaExecHost xmi:id="_marte_11f24429-1b50-48c4-8f17-202f699e6428" base_Classifier="600f7095-a882-4788-afb4-5085ef3a0071" />
+  <MARTE_GRM:GaExecHost xmi:id="_marte_b1a42d1a-2b45-4a3d-83a2-d831451353b5" base_Classifier="116424fa-a2b3-4fe7-8917-f45a4e7ecd2d" />
+  <MARTE_GQAM:GaAnalysisContext xmi:id="_marte_26b413a6-45c3-4379-8317-f58d6649f3a5" base_NamedElement="e1c3b561-294e-4286-92cc-0393db1041c9" isSingleMode="true" />
+  <MARTE_GQAM:GaAnalysisContext xmi:id="_marte_9602fea8-e3e4-48eb-a6cd-d68d842dc56a" base_NamedElement="f1b2a298-37ae-4727-9604-17bb9669e695" isSingleMode="true" />
+  <MARTE_GQAM:GaAnalysisContext xmi:id="_marte_b335f0b3-72ec-411b-aaee-8c5bb15b8290" base_NamedElement="486ec6e4-3aa5-4076-8bd7-b044ad916409" isSingleMode="true" />
+  <MARTE_GQAM:GaAnalysisContext xmi:id="_marte_e85b6630-016f-4fdf-a265-f4c0cd377f95" base_NamedElement="84dd465b-4fc6-4012-a529-bad05dfeefc3" isSingleMode="true" />
+  <MARTE_PAM:PaStep xmi:id="_marte_2e7f62b1-217d-4123-a6c6-d137d4669d9a" base_NamedElement="2bdc5fb5-0c88-419d-8b7a-3ebf7e3d9b33" hostDemand="(value=0.093,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_28e0235d-c722-4da4-bcc9-03be8a64e9c1" base_NamedElement="270c5aa7-599b-4fef-858d-14daee543c43" hostDemand="(value=1.178,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_334eaee8-b224-4e6b-b4ca-0224075a21e5" base_NamedElement="800dc5d1-01c9-445c-8bf9-0a0073ec3402" hostDemand="(value=0.050,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_082db457-bdf5-437f-9821-08859630224c" base_NamedElement="d3941cbb-d76a-4d98-a150-a97757c820d9" hostDemand="(value=0.049,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_ebb31954-a838-468d-bece-b6e03c53d1fd" base_NamedElement="c4d8ac71-1690-40a2-952b-95e91c0ef69f" hostDemand="(value=0.018,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_c15d3fb0-d9cc-4da2-a426-4a472b418232" base_NamedElement="d254eaee-d4dd-4cda-9c94-e66efeec2c61" hostDemand="(value=0.018,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_b792b2a7-0ef7-4f52-9e91-55d25760df3d" base_NamedElement="8419f2f5-8540-4f5e-b71d-6231486c473a" hostDemand="(value=0.053,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_2abc1ebd-8e06-4e06-ae99-4195eae2802d" base_NamedElement="ae9fc769-0ff0-4f30-877d-5b8bd1ebd194" hostDemand="(value=0.031,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_4bef4e04-c657-4a37-854e-fd5e066a5b22" base_NamedElement="bbca82dc-6398-4501-aba1-e6ac8053747a" hostDemand="(value=13.091,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_40421f9d-2c7d-41a8-b63c-3466b64d0250" base_NamedElement="49284abf-ca95-4410-8e0b-6b2a3c4c56ad" hostDemand="(value=0.103,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_83a9e323-a247-461d-b880-763570aeebe4" base_NamedElement="97b01250-c9fa-458b-aa5c-58a80376d9cc" hostDemand="(value=0.091,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_8fc7c6b6-b60a-4178-9555-4956dc6370dc" base_NamedElement="2d2a9647-cd0a-46c7-8f32-1439fb0c05c6" hostDemand="(value=0.075,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_c308dce9-f238-46d0-a7e0-3c756cb3fb17" base_NamedElement="507f149a-294c-46d7-89c0-2c495bdc4c2a" hostDemand="(value=0.166,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_6515db3f-7e29-4dbd-bf62-2426868476ae" base_NamedElement="483710ea-048a-478a-aabc-88b3b6ac2faa" hostDemand="(value=1.422,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_001eaf23-b71e-4e14-be0f-2634647bfc74" base_NamedElement="9c702ad3-404c-4d38-a923-c11fc69c9896" hostDemand="(value=0.103,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_a7d2d567-11a5-449f-9d1e-9da9d6819820" base_NamedElement="901b1ca1-7665-4446-8dc2-f5c50c5a0832" hostDemand="(value=0.053,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_ce982fb7-6393-4396-80b0-5096115bd0f8" base_NamedElement="b7f4121d-84db-4912-b0f6-b4cb28629f05" hostDemand="(value=0.028,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_800df02d-9e55-42e0-9bf7-43a82b7bede8" base_NamedElement="3b0f04c9-ff20-4924-ae0d-77147e1e0301" hostDemand="(value=0.026,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_cdf4c73b-b884-4163-83d8-b7d14925cae6" base_NamedElement="88bdde72-c3d9-40c9-a3dc-4c94751d0878" hostDemand="(value=0.029,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_e07d749a-2b71-443f-a50d-a9bcd095b6c7" base_NamedElement="74349f11-0f36-4b53-8a57-58f8350fddbd" hostDemand="(value=0.024,unit=ms)" />
+  <MARTE_PAM:PaStep xmi:id="_marte_1881030c-84eb-496b-928b-925ab8028340" base_NamedElement="17b620b7-ddfb-415d-8fe2-cfc9371a2691" hostDemand="(value=0.082,unit=ms)" />
+</xmi:XMI>

@@ -7,7 +7,7 @@ from .diagram_generator import DiagramGenerator
 from ..models import Trace
 from ..analyzer import TraceAggregator
 from ..renderer import XmiWriter, XmiFormat
-from ..utils import clean_operation_name
+from ..utils import extract_simple_operation_name
 
 
 logger = logging.getLogger(__name__)
@@ -226,7 +226,7 @@ class ComponentDiagramGenerator(DiagramGenerator):
         ops_list = list(operations)[:20]  # Limit to 20 for readability
         
         for op_name in ops_list:
-            clean_op = clean_operation_name(op_name)
+            clean_op = extract_simple_operation_name(op_name)
             op_elem, op_id = self.xmi_writer.create_owned_element(
                 component, "ownedOperation",
                 name=clean_op, visibility="public"

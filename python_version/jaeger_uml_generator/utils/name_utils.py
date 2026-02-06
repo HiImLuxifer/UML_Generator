@@ -84,8 +84,41 @@ def extract_base_name(name: str) -> str:
     return cleaned
 
 
-def sanitize_xml_name(name: str) -> str:
+def extract_simple_operation_name(operation_name: str) -> str:
+    """
+    Extract only the simple operation name from a full path.
+    
+    Examples:
+        - "hipstershop.CartService/EmptyCart" -> "EmptyCart"
+        - "/hipstershop.EmailService/SendOrderConfirmation" -> "SendOrderConfirmation"
+        - "grpc.hipstershop.CurrencyService/Convert" -> "Convert"
+        - "GET /api/users" -> "users"
+        - "frontend" -> "frontend"
+    
+    Args:
+        operation_name: The full operation name with path
+        
+    Returns:
+        Simple operation name (final part only)
+    """
+    if not operation_name:
+        return "unknown"
+    
+    # First clean the operation name
+    cleaned = clean_operation_name(operation_name)
+    
+    # Extract part after the last "/" if present
+    if '/' in cleaned:
+        cleaned = cleaned.rsplit('/', 1)[-1]
+    
+    # If still has dots (like "service.method"), take the last part
+    if '.' in cleaned:
+        cleaned = cleaned.rsplit('.', 1)[-1]
+    
+    return cleaned if cleaned else "unknown"
 
+
+def sanitize_xml_name(name: str) -> str:
     """
     Sanitize a name for use in XML/XMI.
     
